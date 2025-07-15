@@ -1,0 +1,68 @@
+{
+  "name": "PiKSou - Offres Épicerie Maurice",
+  "short_name": "PiKSou",
+  "description": "Comparez les offres d'épicerie dans tous les grands supermarchés de Maurice",
+  "start_url": "/fr",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#48C774",
+  "orientation": "portrait-primary",
+  "categories": ["shopping", "lifestyle", "utilities"],
+  "lang": "fr",
+  "dir": "ltr",
+  "scope": "/fr",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/app-screenshot-1.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/images/app-screenshot-2.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Voir les Offres",
+      "short_name": "Offres",
+      "description": "Voir les dernières offres d'épicerie",
+      "url": "/fr#features",
+      "icons": [
+        {
+          "src": "/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Télécharger l'App",
+      "short_name": "Télécharger",
+      "description": "Télécharger l'application mobile PiKSou",
+      "url": "/fr#download",
+      "icons": [
+        {
+          "src": "/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

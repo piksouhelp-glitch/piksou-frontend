@@ -12,15 +12,15 @@ export default function AppPreviewSection() {
 
   const screenshots = [
     {
-      src: "/images/app-screenshot-1.png",
+      src: "https://bvrxgxzpxhwztnypxwnb.supabase.co/storage/v1/object/public/files/images/app-screenshot-1.jpg",
       alt: "PiKSou home page with deals listed",
     },
     {
-      src: "/images/app-screenshot-2.png",
+      src: "https://bvrxgxzpxhwztnypxwnb.supabase.co/storage/v1/object/public/files/images/app-screenshot-2.jpg",
       alt: "PiKSou product filter and search",
     },
     {
-      src: "/images/app-screenshot-3.png",
+      src: "https://bvrxgxzpxhwztnypxwnb.supabase.co/storage/v1/object/public/files/images/app-screenshot-3.jpg",
       alt: "PiKSou product detail page with save icon",
     },
   ]

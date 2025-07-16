@@ -7,19 +7,19 @@ export default function HowItWorksSection() {
       number: 1,
       title: "Sign up & Choose your location",
       description: "Create your account and set your preferred location in Mauritius",
-      image: "/images/step-1.svg",
+      image: "https://bvrxgxzpxhwztnypxwnb.supabase.co/storage/v1/object/public/files/images/step-1.jpg",
     },
     {
       number: 2,
       title: "Browse best deals",
       description: "Find deals from Jumbo, Winners, Intermart & more",
-      image: "/images/step-2.svg",
+      image: "https://bvrxgxzpxhwztnypxwnb.supabase.co/storage/v1/object/public/files/images/step-2.jpg",
     },
     {
       number: 3,
       title: "Save, compare, and shop smart!",
       description: "Bookmark deals and compare prices to maximize your savings",
-      image: "/images/step-3.svg",
+      image: "https://bvrxgxzpxhwztnypxwnb.supabase.co/storage/v1/object/public/files/images/step-3.jpg",
     },
   ]
 

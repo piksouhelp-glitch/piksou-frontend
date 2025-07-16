@@ -19,13 +19,7 @@ export default function InteractiveLink({
 }: InteractiveLinkProps) {
   return (
     <Link href={href} className={`relative inline-block ${className}`}>
-      <motion.span
-        className="relative z-10"
-        whileHover={{ y: -2 }}
-        transition={{ type: "spring", stiffness: 400, damping: 10 }}
-      >
-        {children}
-      </motion.span>
+      <motion.span className="relative z-10">{children}</motion.span>
       <motion.div
         className="absolute bottom-0 left-0 h-0.5 bg-current"
         style={{ backgroundColor: underlineColor }}

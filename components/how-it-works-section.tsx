@@ -1,30 +1,34 @@
-import Image from "next/image"
-import FadeIn from "@/components/animations/fade-in"
+import Image from "next/image";
+import FadeIn from "@/components/animations/fade-in";
 
 export default function HowItWorksSection() {
   const steps = [
     {
       number: 1,
       title: "Sign up & Choose your location",
-      description: "Create your account and set your preferred location in Mauritius",
-      image: "https://bvrxgxzpxhwztnypxwnb.supabase.co/storage/v1/object/public/files/images/step-1.jpg",
+      description:
+        "Create your account and set your preferred location in Mauritius",
+      image: "/images/step-1.jpg",
     },
     {
       number: 2,
       title: "Browse best deals",
       description: "Find deals from Jumbo, Winners, Intermart & more",
-      image: "https://bvrxgxzpxhwztnypxwnb.supabase.co/storage/v1/object/public/files/images/step-2.jpg",
+      image: "/images/step-2.jpg",
     },
     {
       number: 3,
       title: "Save, compare, and shop smart!",
       description: "Bookmark deals and compare prices to maximize your savings",
-      image: "https://bvrxgxzpxhwztnypxwnb.supabase.co/storage/v1/object/public/files/images/step-3.jpg",
+      image: "/images/step-3.jpg",
     },
-  ]
+  ];
 
   return (
-    <section className="section-padding bg-gray-50 dark:bg-gray-800 transition-colors duration-300" id="how-it-works">
+    <section
+      className="section-padding bg-gray-50 dark:bg-gray-800 transition-colors duration-300"
+      id="how-it-works"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn>
           <div className="text-center mb-16">
@@ -41,7 +45,11 @@ export default function HowItWorksSection() {
 
           <div className="space-y-16 md:space-y-24">
             {steps.map((step, index) => (
-              <FadeIn key={index} delay={index * 0.2} direction={index % 2 === 0 ? "right" : "left"}>
+              <FadeIn
+                key={index}
+                delay={index * 0.2}
+                direction={index % 2 === 0 ? "right" : "left"}
+              >
                 <div
                   className={`flex flex-col ${
                     index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
@@ -76,5 +84,5 @@ export default function HowItWorksSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,32 +1,32 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Download, X, Smartphone } from "lucide-react"
-import Image from "next/image"
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Download, X, Smartphone } from "lucide-react";
+import Image from "next/image";
 
 export default function FloatingDownloadButtonFr() {
-  const [isVisible, setIsVisible] = useState(false)
-  const [isExpanded, setIsExpanded] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     const toggleVisibility = () => {
       // Show button after scrolling 300px
       if (window.pageYOffset > 300) {
-        setIsVisible(true)
+        setIsVisible(true);
       } else {
-        setIsVisible(false)
-        setIsExpanded(false) // Close expanded state when scrolling back to top
+        setIsVisible(false);
+        setIsExpanded(false); // Close expanded state when scrolling back to top
       }
-    }
+    };
 
-    window.addEventListener("scroll", toggleVisibility)
-    return () => window.removeEventListener("scroll", toggleVisibility)
-  }, [])
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
 
   const toggleExpanded = () => {
-    setIsExpanded(!isExpanded)
-  }
+    setIsExpanded(!isExpanded);
+  };
 
   return (
     <AnimatePresence>
@@ -68,7 +68,9 @@ export default function FloatingDownloadButtonFr() {
                 className="absolute bottom-20 right-0 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl dark:shadow-gray-900/50 p-4 min-w-[280px] border border-gray-200 dark:border-gray-700"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">Télécharger PiKSou</h3>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                    Télécharger PiKSou
+                  </h3>
                   <button
                     onClick={() => setIsExpanded(false)}
                     className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
@@ -80,32 +82,13 @@ export default function FloatingDownloadButtonFr() {
 
                 <div className="space-y-3">
                   <motion.a
-                    href="https://apps.apple.com/app/idXXXXXXXXX"
+                    href="https://codebase-frontend.amanabiy.tech/downloads/app-release-v1.apk"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
                   >
                     <Image
-                      src="/images/app-store-badge.svg"
-                      alt="Télécharger sur l'App Store"
-                      width={200}
-                      height={60}
-                      className="w-full h-auto"
-                    />
-                  </motion.a>
-
-                  <motion.a
-                    href="https://play.google.com/store/apps/details?id=com.piksou.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Image
-                      src="/images/google-play-badge.svg"
+                      src="/images/piksou-logo-2.jpg"
                       alt="Disponible sur Google Play"
                       width={200}
                       height={60}
@@ -127,16 +110,20 @@ export default function FloatingDownloadButtonFr() {
           <motion.button
             onClick={toggleExpanded}
             className={`
-              relative w-14 h-14 rounded-full shadow-lg
-              bg-gradient-to-r from-[#48C774] to-[#00BFFF]
-              hover:shadow-xl
-              flex items-center justify-center
-              transition-all duration-300
-              ${isExpanded ? "ring-4 ring-[#48C774]/30" : ""}
-            `}
+            relative w-14 h-14 rounded-full shadow-lg
+            bg-gradient-to-r from-[#48C774] to-[#00BFFF]
+            hover:shadow-xl
+            flex items-center justify-center
+            transition-all duration-300
+            ${isExpanded ? "ring-4 ring-[#48C774]/30" : ""}
+          `}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            aria-label={isExpanded ? "Fermer les options de téléchargement" : "Ouvrir les options de téléchargement"}
+            aria-label={
+              isExpanded
+                ? "Fermer les options de téléchargement"
+                : "Ouvrir les options de téléchargement"
+            }
           >
             {/* Pulse animation */}
             <motion.div
@@ -153,8 +140,15 @@ export default function FloatingDownloadButtonFr() {
             />
 
             {/* Icon */}
-            <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
-              {isExpanded ? <X size={24} className="text-white" /> : <Download size={24} className="text-white" />}
+            <motion.div
+              animate={{ rotate: isExpanded ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {isExpanded ? (
+                <X size={24} className="text-white" />
+              ) : (
+                <Download size={24} className="text-white" />
+              )}
             </motion.div>
 
             {/* Mobile indicator */}
@@ -192,5 +186,5 @@ export default function FloatingDownloadButtonFr() {
         </motion.div>
       )}
     </AnimatePresence>
-  )
+  );
 }

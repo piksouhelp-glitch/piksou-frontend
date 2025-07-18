@@ -63,8 +63,9 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#download" className="hover:text-[#48C774] transition-colors duration-300">
-                  Download
+                <Link href="https://codebase-frontend.amanabiy.tech/downloads/app-release-v1.apk"
+                  className="hover:text-[#48C774] transition-colors duration-300">
+                  Download APK
                 </Link>
               </li>
               <li>

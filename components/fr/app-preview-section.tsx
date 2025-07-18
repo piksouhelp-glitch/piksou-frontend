@@ -1,37 +1,41 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
-import FadeIn from "@/components/animations/fade-in"
-import ScaleIn from "@/components/animations/scale-in"
+import { useState } from "react";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import FadeIn from "@/components/animations/fade-in";
+import ScaleIn from "@/components/animations/scale-in";
 
 export default function AppPreviewSectionFr() {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const screenshots = [
     {
-      src: "/images/app-screenshot-1.png",
+      src: "/images/app-screenshot-fr-1.jpg",
       alt: "Page d'accueil PiKSou avec les offres listées",
     },
     {
-      src: "/images/app-screenshot-2.png",
+      src: "/images/app-screenshot-fr-2.jpg",
       alt: "Filtre et recherche de produits PiKSou",
     },
     {
-      src: "/images/app-screenshot-3.png",
+      src: "/images/app-screenshot-fr-3.jpg",
       alt: "Page détail produit PiKSou avec icône de sauvegarde",
     },
-  ]
+  ];
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === screenshots.length - 1 ? 0 : prevIndex + 1))
-  }
+    setCurrentIndex((prevIndex) =>
+      prevIndex === screenshots.length - 1 ? 0 : prevIndex + 1
+    );
+  };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? screenshots.length - 1 : prevIndex - 1))
-  }
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? screenshots.length - 1 : prevIndex - 1
+    );
+  };
 
   return (
     <section className="section-padding bg-white dark:bg-gray-900 transition-colors duration-300">
@@ -81,7 +85,10 @@ export default function AppPreviewSectionFr() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <ChevronLeft size={24} className="text-gray-900 dark:text-white" />
+                <ChevronLeft
+                  size={24}
+                  className="text-gray-900 dark:text-white"
+                />
               </motion.button>
               <motion.button
                 onClick={nextSlide}
@@ -90,7 +97,10 @@ export default function AppPreviewSectionFr() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <ChevronRight size={24} className="text-gray-900 dark:text-white" />
+                <ChevronRight
+                  size={24}
+                  className="text-gray-900 dark:text-white"
+                />
               </motion.button>
             </div>
 
@@ -101,7 +111,9 @@ export default function AppPreviewSectionFr() {
                   key={index}
                   onClick={() => setCurrentIndex(index)}
                   className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                    index === currentIndex ? "bg-[#48C774]" : "bg-gray-300 dark:bg-gray-600"
+                    index === currentIndex
+                      ? "bg-[#48C774]"
+                      : "bg-gray-300 dark:bg-gray-600"
                   }`}
                   aria-label={`Aller à la capture d'écran ${index + 1}`}
                   whileHover={{ scale: 1.2 }}
@@ -113,5 +125,5 @@ export default function AppPreviewSectionFr() {
         </ScaleIn>
       </div>
     </section>
-  )
+  );
 }

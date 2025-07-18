@@ -9,9 +9,15 @@ export default function HeroSection() {
       <div className="hero-gradient">
         {/* Floating tropical elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 w-8 h-8 text-mango-yellow opacity-30">🥭</div>
-          <div className="absolute top-40 right-10 w-6 h-6 text-ocean-blue opacity-30">🌊</div>
-          <div className="absolute bottom-40 left-10 w-10 h-10 text-sugarcane-green opacity-30">🌿</div>
+          <div className="absolute top-20 left-10 w-8 h-8 text-mango-yellow opacity-30">
+            🥭
+          </div>
+          <div className="absolute top-40 right-10 w-6 h-6 text-ocean-blue opacity-30">
+            🌊
+          </div>
+          <div className="absolute bottom-40 left-10 w-10 h-10 text-sugarcane-green opacity-30">
+            🌿
+          </div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative">
@@ -37,20 +43,16 @@ export default function HeroSection() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="https://codebase-frontend.amanabiy.tech/downloads/app-release-v1.apk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <button href="https://apps.apple.com/app/idXXXXXXXXX" target="_blank" rel="noopener noreferrer">
                   <div className="organic-card p-4 flex items-center space-x-3">
                     <div className="w-12 h-12 bg-gradient-to-br from-sugarcane-green to-ocean-blue rounded-full flex items-center justify-center">
                       <span className="text-white text-xl">⬇</span>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Download APK</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Download</p>
                     </div>
                   </div>
-                </a>
+                </button>
 
                 <MagneticButton
                   href="https://play.google.com/store/apps/details?id=com.piksou.app"
@@ -60,7 +62,7 @@ export default function HeroSection() {
                   strength={0.2}
                 >
                   <motion.div
-                    className="hidden organic-card p-4 flex items-center space-x-3"
+                    className="organic-card p-4 flex items-center space-x-3 hidden"
                     whileHover={{ rotate: 2 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
@@ -76,33 +78,11 @@ export default function HeroSection() {
               </div>
 
               <div className="flex items-center space-x-4 text-palm-shadow dark:text-gray-300">
+
                 <p className="text-sm">
                   <span className="font-bold handwritten text-mango-yellow">1000+</span> Mauritians already saving!
                   <span className="creole-text"> Zot kontan! </span>
                 </p>
-              </div>
-            </div>
-
-            <div className="relative h-[400px] md:h-[500px]">
-              <div className="relative w-full h-full">
-                {/* Mascot placeholder - would be replaced with actual PikSou duck illustration */}
-                <div className="w-full h-full">
-                  <div className="relative w-full h-full">
-                    {/* Mascot placeholder - would be replaced with actual PikSou duck illustration */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-mango-yellow via-sunset-orange to-ocean-blue rounded-3xl p-8 organic-card">
-                      <div className="text-center h-full flex flex-col justify-center items-center space-y-4">
-                        <div className="bg-white/90 rounded-2xl p-4 shadow-lg">
-                          <p className="handwritten text-2xl text-palm-shadow">
-                            "Mo konnen kot ena
-                            <br />
-                            <span className="text-mango-yellow">bon deal!</span>"
-                          </p>
-                          <p className="text-sm text-gray-600 mt-2">- PikSou, your savings buddy</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

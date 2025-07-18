@@ -73,7 +73,7 @@ export default function ContactSectionFr() {
                   <HoverCard className="group">
                     <a
                       href={info.href}
-                      className="flex items-start space-x-4 p-4 bg-white dark:bg-gray-700 rounded-xl shadow-md dark:shadow-gray-900/20 transition-all duration-300 hover:shadow-lg hidden"
+                      className="flex items-start space-x-4 p-4 bg-white dark:bg-gray-700 rounded-xl shadow-md dark:shadow-gray-900/20 transition-all duration-300 hover:shadow-lg"
                     >
                       <div
                         className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110"

@@ -81,6 +81,12 @@ export default function FeaturesSectionFr() {
                 Rejoignez des milliers de Mauriciens qui économisent déjà avec PikSou. C'est gratuit, c'est facile, et
                 c'est fait ici même au paradis ! 🏝️
               </p>
+              <div className="flex justify-center space-x-4 text-3xl">
+                <span>🦆</span>
+                <span>💰</span>
+                <span>🛒</span>
+                <span>😎</span>
+              </div>
             </div>
           </div>
         </FadeIn>

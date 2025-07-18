@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { Menu, X, Globe } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import DarkModeToggle from "@/components/dark-mode-toggle";
-import InteractiveLink from "@/components/micro-interactions/interactive-link";
-import AnimatedIcon from "@/components/micro-interactions/animated-icon";
+import { useState } from "react"
+import { Menu, X, Globe } from "lucide-react"
+import Link from "next/link"
+import Image from "next/image"
+import { motion, AnimatePresence } from "framer-motion"
+import DarkModeToggle from "@/components/dark-mode-toggle"
+import InteractiveLink from "@/components/micro-interactions/interactive-link"
+import AnimatedIcon from "@/components/micro-interactions/animated-icon"
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false)
 
   const menuItems = [
     { href: "/#features", label: "Features" },
@@ -19,12 +19,12 @@ export default function Navbar() {
     { href: "/#faq", label: "FAQ" },
     { href: "/#download", label: "Download" },
     { href: "/#contact", label: "Contact" },
-  ];
+  ]
 
   const languages = [
     { code: "en", name: "English", href: "/" },
     { code: "fr", name: "Français", href: "/fr" },
-  ];
+  ]
 
   return (
     <motion.nav
@@ -35,20 +35,20 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          <div className="flex-shrink-0 flex items-center">
+          <motion.div
+            className="flex-shrink-0 flex items-center"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
             <Link href="/" className="flex items-center">
-              <Image
-                src="/images/piksou-logo.jpg"
-                alt="PiKSou Logo"
-                width={40}
-                height={40}
-                className="mr-2"
-              />
+              <AnimatedIcon animation="bounce" trigger="hover">
+                <Image src="/images/piksou-logo.svg" alt="PiKSou Logo" width={40} height={40} className="mr-2" />
+              </AnimatedIcon>
               <span className="text-xl font-bold text-gray-900 dark:text-white transition-colors duration-300">
                 PiKSou
               </span>
             </Link>
-          </div>
+          </motion.div>
 
           {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-8">
@@ -211,5 +211,5 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </motion.nav>
-  );
+  )
 }

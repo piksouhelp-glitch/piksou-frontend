@@ -1,35 +1,30 @@
-import Image from "next/image";
-import FadeIn from "@/components/animations/fade-in";
+import Image from "next/image"
+import FadeIn from "@/components/animations/fade-in"
 
 export default function HowItWorksSectionFr() {
   const steps = [
     {
       number: 1,
       title: "Inscrivez-vous et Choisissez votre localisation",
-      description:
-        "Créez votre compte et définissez votre localisation préférée à Maurice",
-      image: "/images/step-fr-1.jpg",
+      description: "Créez votre compte et définissez votre localisation préférée à Maurice",
+      image: "/images/step-1.svg",
     },
     {
       number: 2,
       title: "Parcourez les meilleures offres",
       description: "Trouvez des offres chez Jumbo, Winners, Intermart et plus",
-      image: "/images/step-fr-2.jpg",
+      image: "/images/step-2.svg",
     },
     {
       number: 3,
       title: "Sauvegardez, comparez et achetez malin !",
-      description:
-        "Marquez les offres et comparez les prix pour maximiser vos économies",
-      image: "/images/step-fr-3.jpg",
+      description: "Marquez les offres et comparez les prix pour maximiser vos économies",
+      image: "/images/step-3.svg",
     },
-  ];
+  ]
 
   return (
-    <section
-      className="section-padding bg-gray-50 dark:bg-gray-800 transition-colors duration-300"
-      id="how-it-works"
-    >
+    <section className="section-padding bg-gray-50 dark:bg-gray-800 transition-colors duration-300" id="how-it-works">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn>
           <div className="text-center mb-16">
@@ -46,11 +41,7 @@ export default function HowItWorksSectionFr() {
 
           <div className="space-y-16 md:space-y-24">
             {steps.map((step, index) => (
-              <FadeIn
-                key={index}
-                delay={index * 0.2}
-                direction={index % 2 === 0 ? "right" : "left"}
-              >
+              <FadeIn key={index} delay={index * 0.2} direction={index % 2 === 0 ? "right" : "left"}>
                 <div
                   className={`flex flex-col ${
                     index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
@@ -85,5 +76,5 @@ export default function HowItWorksSectionFr() {
         </div>
       </div>
     </section>
-  );
+  )
 }

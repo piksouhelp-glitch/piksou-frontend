@@ -1,13 +1,23 @@
 "use client"
+import { motion } from "framer-motion"
+import FadeIn from "@/components/animations/fade-in"
+import ScaleIn from "@/components/animations/scale-in"
+import MagneticButton from "@/components/micro-interactions/magnetic-button"
 
 export default function DownloadSection() {
   return (
     <section className="section-padding market-section relative overflow-hidden" id="download">
       {/* Floating tropical elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 left-10 text-4xl opacity-20">🌺</div>
-        <div className="absolute top-20 right-20 text-3xl opacity-20">🥥</div>
-        <div className="absolute bottom-20 left-1/4 text-3xl opacity-20">🌴</div>
+        <div className="absolute top-10 left-10 text-4xl opacity-20">
+          🌺
+        </div>
+        <div className="absolute top-20 right-20 text-3xl opacity-20">
+          🥥
+        </div>
+        <div className="absolute bottom-20 left-1/4 text-3xl opacity-20">
+          🌴
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -23,23 +33,24 @@ export default function DownloadSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-6 mb-8">
-            <a
-              href="https://codebase-frontend.amanabiy.tech/downloads/app-release-v1.apk"
+            <button
+              href="https://apps.apple.com/app/idXXXXXXXXX"
               target="_blank"
               rel="noopener noreferrer"
-              className="group transform hover:scale-105 transition-all duration-300"
             >
               <div className="organic-card p-6 flex items-center space-x-4">
                 <div className="w-16 h-16 bg-gradient-to-br from-sugarcane-green to-ocean-blue rounded-2xl flex items-center justify-center shadow-lg">
                   <span className="text-white text-2xl">⬇</span>
                 </div>
                 <div className="text-left">
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Download APK</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Download</p>
                   <p className="text-xs creole-text">Gratis!</p>
                 </div>
               </div>
-            </a>
+            </button>
           </div>
+
+          
         </div>
       </div>
     </section>

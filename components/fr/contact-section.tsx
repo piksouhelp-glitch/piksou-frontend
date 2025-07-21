@@ -2,7 +2,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react"
 import FadeIn from "@/components/animations/fade-in"
 import StaggerContainer from "@/components/animations/stagger-container"
 import StaggerItem from "@/components/animations/stagger-item"
-import ContactForm from "@/components/contact-form"
+import ContactForm from "@/components/fr/contact-form"
 import AnimatedIcon from "@/components/micro-interactions/animated-icon"
 import HoverCard from "@/components/micro-interactions/hover-card"
 

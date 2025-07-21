@@ -18,16 +18,6 @@ export default function FAQSectionFr() {
         "Oui, PiKSou est entièrement gratuit à télécharger et à utiliser. Nous croyons que tout le monde devrait avoir accès à des outils qui l'aident à économiser sur l'épicerie.",
     },
     {
-      question: "Quels supermarchés sont inclus dans l'application ?",
-      answer:
-        "PiKSou couvre actuellement tous les grands supermarchés de Maurice, notamment Jumbo, Winners, Intermart, et plus encore. Nous ajoutons constamment de nouveaux magasins à notre base de données.",
-    },
-    {
-      question: "À quelle fréquence les offres sont-elles mises à jour ?",
-      answer:
-        "Nous mettons à jour notre base de données d'offres quotidiennement pour vous assurer d'avoir toujours accès aux promotions et prix les plus récents. Les promotions spéciales sont ajoutées dès qu'elles deviennent disponibles.",
-    },
-    {
       question: "Dois-je créer un compte pour utiliser PiKSou ?",
       answer:
         "Bien que vous puissiez parcourir les offres sans compte, créer un compte gratuit vous permet de sauvegarder vos articles favoris, d'obtenir des recommandations personnalisées et de suivre vos économies au fil du temps.",
@@ -43,10 +33,45 @@ export default function FAQSectionFr() {
         "Avec votre permission, PiKSou peut utiliser votre localisation pour vous montrer les offres dans les supermarchés à proximité. Ceci est optionnel et peut être désactivé dans les paramètres de votre application à tout moment.",
     },
     {
-      question: "Comment signaler un prix ou une offre incorrecte ?",
+      question: "Quels supermarchés sont inclus dans l'application ?",
       answer:
-        "Nous apprécions les commentaires de la communauté ! Dans l'application, appuyez simplement sur l'offre, sélectionnez 'Signaler un problème' et fournissez les détails. Notre équipe examine tous les signalements pour maintenir la précision.",
+        "PiKSou couvre actuellement tous les grands supermarchés de Maurice, notamment Jumbo, Winners, Intermart, et plus encore. Nous ajoutons constamment de nouveaux magasins à notre base de données.",
     },
+    {
+      question: "À quelle fréquence les offres sont-elles mises à jour ?",
+      answer:
+        "Nous mettons à jour notre base de données d'offres quotidiennement pour vous assurer d'avoir toujours accès aux promotions et prix les plus récents. Les promotions spéciales sont ajoutées dès qu'elles deviennent disponibles.",
+    },
+    {
+      question: "Puis-je rechercher des produits spécifiques ?",
+      answer:
+        "Oui ! Utilisez la barre de recherche dans l'application pour trouver rapidement des produits spécifiques et voir les offres correspondantes.",
+    },
+    {
+      question: "Puis-je filtrer les offres par catégorie, magasin ou fourchette de prix ?",
+      answer:
+        "Absolument. Vous pouvez filtrer les offres par catégorie, magasin, prix - pour trouver exactement ce dont vous avez besoin.",
+    },
+    {
+      question: "Comment enregistrer les articles qui m'intéressent ?",
+      answer:
+        "Appuyez simplement sur l'icône de signet à côté d'une offre pour l'ajouter à vos favoris. Vous pouvez consulter toutes vos offres sauvegardées dan l'onglet favoris en bas de l'écran.",
+    },
+    // {
+    //   question: "PikSou propose-t-il des recommandations personnalisées ?",
+    //   answer:
+    //     "",
+    // },
+    {
+      question: "Comment puis-je contacter l'assistance ?",
+      answer:
+        "Appuyez sur l'onglet profil pour accéder à votre profil. Dans la section Assistance et Légal, appuyez sur Assistance et envoyez un message via le formulaire prévu à cet effet.",
+    },
+    // {
+    //   question: "Comment signaler un prix ou une offre incorrecte ?",
+    //   answer:
+    //     "Nous apprécions les commentaires de la communauté ! Dans l'application, appuyez simplement sur l'offre, sélectionnez 'Signaler un problème' et fournissez les détails. Notre équipe examine tous les signalements pour maintenir la précision.",
+    // },
   ]
 
   return (

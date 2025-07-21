@@ -18,16 +18,6 @@ export default function FAQSection() {
         "Yes, PiKSou is completely free to download and use. We believe everyone should have access to tools that help them save money on groceries.",
     },
     {
-      question: "Which supermarkets are included in the app?",
-      answer:
-        "PiKSou currently covers all major supermarkets in Mauritius including Jumbo, Winners, Intermart, and more. We're constantly adding new stores to our database.",
-    },
-    {
-      question: "How often are deals updated?",
-      answer:
-        "We update our deals database daily to ensure you always have access to the most current promotions and prices. Special promotions are added as soon as they become available.",
-    },
-    {
       question: "Do I need to create an account to use PiKSou?",
       answer:
         "While you can browse deals without an account, creating a free account allows you to save favorite items, get personalized recommendations, and track your savings over time.",
@@ -43,10 +33,45 @@ export default function FAQSection() {
         "With your permission, PiKSou can use your location to show you deals at nearby supermarkets. This is optional and can be disabled in your app settings at any time.",
     },
     {
-      question: "How do I report an incorrect price or deal?",
+      question: "Which supermarkets are included in the app?",
       answer:
-        "We appreciate community feedback! In the app, simply tap on the deal, select 'Report Issue', and provide details. Our team reviews all reports to maintain accuracy.",
+        "PiKSou currently covers all major supermarkets in Mauritius including Jumbo, Winners, Intermart, and more. We're constantly adding new stores to our database.",
     },
+    {
+      question: "How often are deals updated?",
+      answer:
+        "We update our deals database daily to ensure you always have access to the most current promotions and prices. Special promotions are added as soon as they become available.",
+    },
+    {
+      question: "Can I search for specific products?",
+      answer:
+        "Yes! Use the search bar in the app to quickly find specific products and find deals for those products.",
+    },
+    {
+      question: "Can I filter deals by category, store, or price range?",
+      answer:
+        "Definitely. You can filter deals by category, store, price - so you find exactly what you need.",
+    },
+    {
+      question: "How do I save items I'm interested in?",
+      answer:
+        "Just tap the bookmark icon on any deal to save it to your favorites. You can view all your saved deals by tapping on the saved deals tab at the bottom of your screen.",
+    },
+    // {
+    //   question: "Does PikSou offer personalized recommendations?",
+    //   answer:
+    //     "",
+    // },
+    {
+      question: "How can I contact support?",
+      answer:
+        "Just tap the profile tab to navigate to your profile. Under Support and Legal, tap support and submit a message with the provided form.",
+    },
+    // {
+    //   question: "How do I report an incorrect price or deal?",
+    //   answer:
+    //     "We appreciate community feedback! In the app, simply tap on the deal, select 'Report Issue', and provide details. Our team reviews all reports to maintain accuracy.",
+    // },
   ]
 
   return (

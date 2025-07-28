@@ -2,11 +2,13 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Send, CheckCircle, AlertCircle, User, Mail, MessageSquare, Phone } from "lucide-react"
 import RippleButton from "@/components/micro-interactions/ripple-button"
 import AnimatedIcon from "@/components/micro-interactions/animated-icon"
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:5011"
 
 interface FormData {
   name: string
@@ -25,6 +27,8 @@ interface FormErrors {
 }
 
 export default function ContactForm() {
+  const [token, setToken] = useState<string | null>(null)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -37,6 +41,15 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [focusedField, setFocusedField] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search)
+      const paramToken = params.get("token")
+      setToken(paramToken)
+      setIsAuthenticated(!!paramToken)
+    }
+  }, [])
 
   const validateField = (name: string, value: string): string | undefined => {
     switch (name) {
@@ -94,6 +107,10 @@ export default function ContactForm() {
     let isValid = true
 
     Object.entries(formData).forEach(([key, value]) => {
+      if (token && ["name", "email", "phone"].includes(key)) {
+        return
+      }
+
       if (key !== "phone") {
         // Phone is optional
         const error = validateField(key, value)
@@ -118,25 +135,55 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
+    if (isSubmitting) {
+      return
+    }
+
     if (!validateForm()) {
       return
     }
 
     setIsSubmitting(true)
+    setIsSubmitted(false)
 
-    // Simulate API call
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      const payload: Record<string, string> = {
+        subject: formData.subject,
+        message: formData.message,
+      }
+
+      if (!token) {
+        payload.full_name = formData.name
+        payload.email = formData.email
+        if (formData.phone) {
+          payload.phone = formData.phone
+        }
+      }
+      
+      const response = await fetch(`${BASE_URL}/api/support/messages/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? {Authorization: `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify(payload),
+      })
+
+      if(!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.detail || "Failed to submit message.")
+      }
+
       setIsSubmitted(true)
       setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      })
-    } catch (error) {
-      console.error("Error submitting form:", error)
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        })
+    } catch (error: any) {
+      console.error("Submission error:", error.message || error)
     } finally {
       setIsSubmitting(false)
     }
@@ -198,151 +245,157 @@ export default function ContactForm() {
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Name Field */}
-        <div className="space-y-2">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-            Full Name *
-          </label>
-          <motion.div
-            className="relative"
-            variants={inputVariants}
-            animate={focusedField === "name" ? "focused" : "unfocused"}
-          >
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <User size={20} className="text-gray-400" />
-            </div>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              onFocus={() => handleFocus("name")}
-              onBlur={handleBlur}
-              className={`
-                block w-full pl-10 pr-3 py-3 border rounded-lg
-                bg-gray-50 dark:bg-gray-700 
-                text-gray-900 dark:text-white
-                placeholder-gray-500 dark:placeholder-gray-400
-                focus:outline-none focus:ring-2 focus:ring-[#48C774] focus:border-transparent
-                transition-all duration-200
-                ${errors.name ? "border-red-500" : "border-gray-300 dark:border-gray-600"}
-              `}
-              placeholder="Enter your full name"
-            />
-          </motion.div>
-          <AnimatePresence>
-            {errors.name && (
-              <motion.div
-                variants={errorVariants}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                className="flex items-center space-x-1 text-red-500 text-sm"
-              >
-                <AlertCircle size={16} />
-                <span>{errors.name}</span>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        {!isAuthenticated && (
+          <div className="space-y-2">
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              Full Name *
+            </label>
+            <motion.div
+              className="relative"
+              variants={inputVariants}
+              animate={focusedField === "name" ? "focused" : "unfocused"}
+            >
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <User size={20} className="text-gray-400" />
+              </div>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                onFocus={() => handleFocus("name")}
+                onBlur={handleBlur}
+                className={`
+                  block w-full pl-10 pr-3 py-3 border rounded-lg
+                  bg-gray-50 dark:bg-gray-700 
+                  text-gray-900 dark:text-white
+                  placeholder-gray-500 dark:placeholder-gray-400
+                  focus:outline-none focus:ring-2 focus:ring-[#48C774] focus:border-transparent
+                  transition-all duration-200
+                  ${errors.name ? "border-red-500" : "border-gray-300 dark:border-gray-600"}
+                `}
+                placeholder="Enter your full name"
+              />
+            </motion.div>
+            <AnimatePresence>
+              {errors.name && (
+                <motion.div
+                  variants={errorVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
+                  className="flex items-center space-x-1 text-red-500 text-sm"
+                >
+                  <AlertCircle size={16} />
+                  <span>{errors.name}</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        )}
 
         {/* Email Field */}
-        <div className="space-y-2">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-            Email Address *
-          </label>
-          <motion.div
-            className="relative"
-            variants={inputVariants}
-            animate={focusedField === "email" ? "focused" : "unfocused"}
-          >
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Mail size={20} className="text-gray-400" />
-            </div>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              onFocus={() => handleFocus("email")}
-              onBlur={handleBlur}
-              className={`
-                block w-full pl-10 pr-3 py-3 border rounded-lg
-                bg-gray-50 dark:bg-gray-700 
-                text-gray-900 dark:text-white
-                placeholder-gray-500 dark:placeholder-gray-400
-                focus:outline-none focus:ring-2 focus:ring-[#48C774] focus:border-transparent
-                transition-all duration-200
-                ${errors.email ? "border-red-500" : "border-gray-300 dark:border-gray-600"}
-              `}
-              placeholder="Enter your email address"
-            />
-          </motion.div>
-          <AnimatePresence>
-            {errors.email && (
-              <motion.div
-                variants={errorVariants}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                className="flex items-center space-x-1 text-red-500 text-sm"
-              >
-                <AlertCircle size={16} />
-                <span>{errors.email}</span>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        {!isAuthenticated && (
+          <div className="space-y-2">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              Email Address *
+            </label>
+            <motion.div
+              className="relative"
+              variants={inputVariants}
+              animate={focusedField === "email" ? "focused" : "unfocused"}
+            >
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Mail size={20} className="text-gray-400" />
+              </div>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                onFocus={() => handleFocus("email")}
+                onBlur={handleBlur}
+                className={`
+                  block w-full pl-10 pr-3 py-3 border rounded-lg
+                  bg-gray-50 dark:bg-gray-700 
+                  text-gray-900 dark:text-white
+                  placeholder-gray-500 dark:placeholder-gray-400
+                  focus:outline-none focus:ring-2 focus:ring-[#48C774] focus:border-transparent
+                  transition-all duration-200
+                  ${errors.email ? "border-red-500" : "border-gray-300 dark:border-gray-600"}
+                `}
+                placeholder="Enter your email address"
+              />
+            </motion.div>
+            <AnimatePresence>
+              {errors.email && (
+                <motion.div
+                  variants={errorVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
+                  className="flex items-center space-x-1 text-red-500 text-sm"
+                >
+                  <AlertCircle size={16} />
+                  <span>{errors.email}</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        )}
 
         {/* Phone Field */}
-        <div className="space-y-2">
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-            Phone Number
-          </label>
-          <motion.div
-            className="relative"
-            variants={inputVariants}
-            animate={focusedField === "phone" ? "focused" : "unfocused"}
-          >
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Phone size={20} className="text-gray-400" />
-            </div>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              onFocus={() => handleFocus("phone")}
-              onBlur={handleBlur}
-              className={`
-                block w-full pl-10 pr-3 py-3 border rounded-lg
-                bg-gray-50 dark:bg-gray-700 
-                text-gray-900 dark:text-white
-                placeholder-gray-500 dark:placeholder-gray-400
-                focus:outline-none focus:ring-2 focus:ring-[#48C774] focus:border-transparent
-                transition-all duration-200
-                ${errors.phone ? "border-red-500" : "border-gray-300 dark:border-gray-600"}
-              `}
-              placeholder="Enter your phone number (optional)"
-            />
-          </motion.div>
-          <AnimatePresence>
-            {errors.phone && (
-              <motion.div
-                variants={errorVariants}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                className="flex items-center space-x-1 text-red-500 text-sm"
-              >
-                <AlertCircle size={16} />
-                <span>{errors.phone}</span>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        {!isAuthenticated && (
+          <div className="space-y-2">
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              Phone Number
+            </label>
+            <motion.div
+              className="relative"
+              variants={inputVariants}
+              animate={focusedField === "phone" ? "focused" : "unfocused"}
+            >
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Phone size={20} className="text-gray-400" />
+              </div>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                onFocus={() => handleFocus("phone")}
+                onBlur={handleBlur}
+                className={`
+                  block w-full pl-10 pr-3 py-3 border rounded-lg
+                  bg-gray-50 dark:bg-gray-700 
+                  text-gray-900 dark:text-white
+                  placeholder-gray-500 dark:placeholder-gray-400
+                  focus:outline-none focus:ring-2 focus:ring-[#48C774] focus:border-transparent
+                  transition-all duration-200
+                  ${errors.phone ? "border-red-500" : "border-gray-300 dark:border-gray-600"}
+                `}
+                placeholder="Enter your phone number (optional)"
+              />
+            </motion.div>
+            <AnimatePresence>
+              {errors.phone && (
+                <motion.div
+                  variants={errorVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
+                  className="flex items-center space-x-1 text-red-500 text-sm"
+                >
+                  <AlertCircle size={16} />
+                  <span>{errors.phone}</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        )}
 
         {/* Subject Field */}
         <div className="space-y-2">
@@ -449,7 +502,9 @@ export default function ContactForm() {
             w-full py-3 px-6 text-lg font-medium
             ${isSubmitting ? "opacity-75 cursor-not-allowed" : ""}
           `}
-          onClick={handleSubmit}
+          // onClick={handleSubmit}
+          // type="submit"
+          onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)}
         >
           <div className="flex items-center justify-center space-x-2">
             {isSubmitting ? (

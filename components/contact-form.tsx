@@ -502,8 +502,6 @@ export default function ContactForm() {
             w-full py-3 px-6 text-lg font-medium
             ${isSubmitting ? "opacity-75 cursor-not-allowed" : ""}
           `}
-          // onClick={handleSubmit}
-          // type="submit"
           onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)}
         >
           <div className="flex items-center justify-center space-x-2">

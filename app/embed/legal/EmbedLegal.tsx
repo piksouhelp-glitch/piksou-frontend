@@ -5,6 +5,9 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { FileText, Shield, Database, Eye, Users, AlertTriangle, Gavel, Mail } from "lucide-react"
 
+const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL
+const mailtoLink = `mailto:${contactEmail}`
+
 // EDITABLE CONTENT CONFIGURATION - Same as main legal page
 const LEGAL_CONTENT = {
   header: {
@@ -21,9 +24,9 @@ const LEGAL_CONTENT = {
     registrationNumber: "[Registration Number]",
     phone: "+230 [Your Phone Number]",
     emails: {
-      general: "hello@piksou.mu",
-      privacy: "privacy@piksou.mu",
-      legal: "legal@piksou.mu",
+      general: contactEmail,
+      privacy: contactEmail,
+      legal: contactEmail,
     },
   },
 

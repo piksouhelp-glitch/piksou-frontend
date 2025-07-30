@@ -1,6 +1,9 @@
 import Link from "next/link"
 import { Instagram, Facebook, MessageCircle } from "lucide-react"
 
+const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL
+const mailtoLink = `mailto:${contactEmail}`
+
 export default function FooterFr() {
   return (
     <footer className="bg-gray-900 dark:bg-black text-white transition-colors duration-300" id="contact">
@@ -9,8 +12,8 @@ export default function FooterFr() {
           <div>
             <h3 className="text-2xl font-bold mb-4">Contactez-nous</h3>
             <p className="mb-2">
-              <a href="mailto:hello@piksou.mu" className="hover:text-[#48C774] transition-colors duration-300">
-                hello@piksou.mu
+              <a href={mailtoLink} className="hover:text-[#48C774] transition-colors duration-300">
+                {contactEmail}
               </a>
             </p>
             <div className="flex space-x-4 mt-4">

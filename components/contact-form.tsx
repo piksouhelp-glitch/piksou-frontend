@@ -160,7 +160,7 @@ export default function ContactForm() {
         }
       }
       
-      const response = await fetch(`${BASE_URL}/api/support/messages/`, {
+      const response = await fetch(`${BASE_URL}api/support/messages/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

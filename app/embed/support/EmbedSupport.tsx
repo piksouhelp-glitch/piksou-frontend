@@ -6,6 +6,9 @@ import { motion } from "framer-motion"
 import ContactForm from "@/components/contact-form"
 import { MessageCircle, Mail, Phone, Clock, HelpCircle } from "lucide-react"
 
+const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL
+const mailtoLink = `mailto:${contactEmail}`
+
 export default function EmbedSupportPage() {
   const searchParams = useSearchParams()
   const [mounted, setMounted] = useState(false)
@@ -24,9 +27,9 @@ export default function EmbedSupportPage() {
     {
       icon: Mail,
       title: "Email Support",
-      content: "hello@piksou.mu",
+      content: contactEmail,
       description: "Get help via email",
-      href: "mailto:hello@piksou.mu",
+      href: mailtoLink,
       color: "#48C774",
     },
     {

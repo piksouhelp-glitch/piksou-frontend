@@ -91,7 +91,7 @@ const LEGAL_CONTENT = {
             //     "With your permission, we use your location to show nearby deals. You can turn this off in your settings."
             // },
             {
-              subtitle: "1.5 Messages:",
+              subtitle: "1.4 Messages:",
               content:
                 "If you contact us, we keep your messages and any files you send to help solve your issue.",
             },
@@ -166,11 +166,11 @@ const LEGAL_CONTENT = {
               content:
                 "We may update these terms and will let you know if anything important changes.",
             },
-            {
-              subtitle: "4.3 Age Requirement:",
-              content:
-                "You must be at least 13 years old. If you're under 18, you need a parent or guardian’s permission.",
-            },
+            // {
+            //   subtitle: "4.3 Age Requirement:",
+            //   content:
+            //     "You must be at least 13 years old. If you're under 18, you need a parent or guardian’s permission.",
+            // },
           ],
         },
         {
@@ -264,11 +264,11 @@ const LEGAL_CONTENT = {
           content:
             "You can delete your account anytime from the app or by contacting us.",
         },
-        {
-          subtitle: "8.4 Turn Off Tracking:",
-          content:
-            "You can disable location tracking and opt out of marketing through your app settings.",
-        },
+        // {
+        //   subtitle: "8.4 Turn Off Tracking:",
+        //   content:
+        //     "You can disable location tracking and opt out of marketing through your app settings.",
+        // },
       ],
     },
 

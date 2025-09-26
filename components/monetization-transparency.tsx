@@ -46,7 +46,7 @@ export default function MonetizationTransparency() {
                         </h3>
 
                         <p className="text-gray-600 dark:text-gray-300 mb-6">
-                            Right now, PiKSou is completely free for all users. We're focused on building a community of smart shoppers and helping you save money. As we grow, we may introduce premium features, but the core deal-finding functionality will always remain free.
+                            Right now, PiKSou is currently completely free for all users. We're focused on building a community of smart shoppers and helping you save money. As we grow, we may introduce premium features, but the core deal-finding functionality will always remain free.
                         </p>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">

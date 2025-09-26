@@ -1,7 +1,10 @@
 import type { Metadata } from "next"
 import Navbar from "@/components/fr/navbar"
 import HeroSection from "@/components/fr/hero-section"
+import ValuePropositionStrip from "@/components/fr/value-proposition-strip"
+import TopDealsSectionFr from "@/components/fr/top-deals-section"
 import AboutSection from "@/components/fr/about-section"
+import MonetizationTransparency from "@/components/fr/monetization-transparency"
 import FeaturesSection from "@/components/fr/features-section"
 import AppPreviewSection from "@/components/fr/app-preview-section"
 import HowItWorksSection from "@/components/fr/how-it-works-section"
@@ -101,7 +104,10 @@ export default function HomeFr() {
         <ScrollProgress />
         <Navbar />
         <HeroSection />
+        <ValuePropositionStrip />
+        <TopDealsSectionFr />
         <AboutSection />
+        <MonetizationTransparency />
         <FeaturesSection />
         <AppPreviewSection />
         <HowItWorksSection />

@@ -23,56 +23,47 @@ export default function HeroSection() {
                   whileHover={{ rotate: 2, scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300, damping: 10 }}
                 >
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-palm-shadow dark:text-sugarcane-green leading-tight handwritten">
-                    Pik to sou, <span className="text-mango-yellow hand-underline">pa bril to larzan!</span>
+                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-palm-shadow dark:text-sugarcane-green leading-tight">
+                    Never Overpay for Groceries Again.
                   </h1>
                 </motion.div>
               </FadeIn>
 
               <p className="text-xl md:text-2xl text-palm-shadow dark:text-gray-300 font-medium">
-                Compare supermarket deals across Mauritius instantly.
-                <span className="creole-text"> PikSou </span>
-                makes it easy to find the best grocery savings in town,
-                <span className="handwritten text-ocean-blue"> mo kapav! </span>
+                Compare supermarket deals in Mauritius and save every week.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="https://codebase-frontend.amanabiy.tech/downloads/app-release-v1.apk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <div className="organic-card p-4 flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-sugarcane-green to-ocean-blue rounded-full flex items-center justify-center">
-                      <span className="text-white text-xl">⬇</span>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Download APK</p>
-                    </div>
-                  </div>
-                </a>
-
-                <MagneticButton
-                  href="https://play.google.com/store/apps/details?id=com.piksou.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group transform hover:scale-105 transition-all duration-300"
-                  strength={0.2}
-                >
-                  <motion.div
-                    className="hidden organic-card p-4 flex items-center space-x-3"
-                    whileHover={{ rotate: 2 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              <div className="space-y-4">
+                <p className="text-lg font-semibold text-palm-shadow dark:text-gray-300">
+                  Get the App for Free
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a
+                    href="https://apps.apple.com/app/piksou"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transform hover:scale-105 transition-all duration-300"
                   >
-                    <div className="w-12 h-12 bg-gradient-to-br from-mango-yellow to-sunset-orange rounded-full flex items-center justify-center">
-                      <span className="text-white text-xl">🤖</span>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Get it on</p>
-                      <p className="text-lg font-bold text-palm-shadow dark:text-white handwritten">Google Play</p>
-                    </div>
-                  </motion.div>
-                </MagneticButton>
+                    <img
+                      src="/images/app-store-badge.svg"
+                      alt="Download on the App Store"
+                      className="h-14 w-auto"
+                    />
+                  </a>
+
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.piksou.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transform hover:scale-105 transition-all duration-300"
+                  >
+                    <img
+                      src="/images/google-play-badge.svg"
+                      alt="Get it on Google Play"
+                      className="h-14 w-auto"
+                    />
+                  </a>
+                </div>
               </div>
 
               <div className="flex items-center space-x-4 text-palm-shadow dark:text-gray-300">
@@ -83,25 +74,68 @@ export default function HeroSection() {
               </div>
             </div>
 
-            <div className="relative h-[400px] md:h-[500px]">
+            <div className="relative h-[320px] md:h-[360px]">
               <div className="relative w-full h-full">
-                {/* Mascot placeholder - would be replaced with actual PikSou duck illustration */}
-                <div className="w-full h-full">
-                  <div className="relative w-full h-full">
-                    {/* Mascot placeholder - would be replaced with actual PikSou duck illustration */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-mango-yellow via-sunset-orange to-ocean-blue rounded-3xl p-8 organic-card">
-                      <div className="text-center h-full flex flex-col justify-center items-center space-y-4">
-                        <div className="bg-white/90 rounded-2xl p-4 shadow-lg">
-                          <p className="handwritten text-2xl text-palm-shadow">
-                            "Mo konnen kot ena
-                            <br />
-                            <span className="text-mango-yellow">bon deal!</span>"
-                          </p>
-                          <p className="text-sm text-gray-600 mt-2">- PikSou, your savings buddy</p>
+                {/* Multiple app screenshots in a visually appealing layout */}
+                <div className="relative w-full h-full">
+                  {/* Main screenshot - larger and centered */}
+                  <div className="absolute top-2 left-1/2 transform -translate-x-1/2 z-20">
+                    <div className="w-[220px] h-[300px] bg-gradient-to-br from-sugarcane-green to-ocean-blue rounded-3xl p-4 organic-card shadow-2xl">
+                      <div className="bg-white rounded-2xl h-full p-3 shadow-lg overflow-hidden">
+                        <div className="flex items-center justify-center mb-3">
+                          <h3 className="text-sm font-bold text-gray-800">PikSou App</h3>
+                        </div>
+                        <div className="relative h-[calc(100%-2rem)]">
+                          <img
+                            src="/images/app-screenshot-1.jpg"
+                            alt="PikSou app showing grocery deals comparison"
+                            className="w-full h-full object-cover rounded-lg"
+                          />
                         </div>
                       </div>
                     </div>
                   </div>
+
+                  {/* Secondary screenshot - smaller, behind and to the left */}
+                  <div className="absolute top-6 left-2 z-10 transform rotate-[-8deg]">
+                    <div className="w-[180px] h-[240px] bg-gradient-to-br from-mango-yellow to-sunset-orange rounded-2xl p-3 organic-card shadow-xl">
+                      <div className="bg-white rounded-xl h-full p-2 shadow-lg overflow-hidden">
+                        <div className="flex items-center justify-center mb-2">
+                          <h3 className="text-xs font-bold text-gray-800">Deals</h3>
+                        </div>
+                        <div className="relative h-[calc(100%-1.5rem)]">
+                          <img
+                            src="/images/app-screenshot-2.jpg"
+                            alt="PikSou app deals view"
+                            className="w-full h-full object-cover rounded-lg"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Third screenshot - smaller, behind and to the right */}
+                  <div className="absolute top-8 right-2 z-10 transform rotate-[6deg]">
+                    <div className="w-[170px] h-[220px] bg-gradient-to-br from-ocean-blue to-sugarcane-green rounded-2xl p-3 organic-card shadow-xl">
+                      <div className="bg-white rounded-xl h-full p-2 shadow-lg overflow-hidden">
+                        <div className="flex items-center justify-center mb-2">
+                          <h3 className="text-xs font-bold text-gray-800">Compare</h3>
+                        </div>
+                        <div className="relative h-[calc(100%-1.5rem)]">
+                          <img
+                            src="/images/app-screenshot-3.jpg"
+                            alt="PikSou app comparison view"
+                            className="w-full h-full object-cover rounded-lg"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Floating elements for visual appeal */}
+                  <div className="absolute top-2 right-8 w-6 h-6 bg-mango-yellow rounded-full opacity-60 animate-bounce"></div>
+                  <div className="absolute bottom-4 left-8 w-4 h-4 bg-ocean-blue rounded-full opacity-40 animate-pulse"></div>
+                  <div className="absolute top-16 left-12 w-3 h-3 bg-sugarcane-green rounded-full opacity-50 animate-ping"></div>
                 </div>
               </div>
             </div>

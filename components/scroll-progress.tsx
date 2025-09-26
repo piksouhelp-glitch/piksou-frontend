@@ -27,11 +27,10 @@ export default function ScrollProgress() {
     >
       <motion.div
         className="h-full bg-gradient-to-r from-[#48C774] to-[#00BFFF]"
-        style={{ scaleX: scrollProgress }}
+        style={{ scaleX: scrollProgress, transformOrigin: "left" }}
         initial={{ scaleX: 0 }}
         animate={{ scaleX: scrollProgress }}
         transition={{ duration: 0.1 }}
-        transformOrigin="left"
       />
     </motion.div>
   )

@@ -9,7 +9,7 @@ export default function ValuePropositionStripFr() {
     return (
         <section
             ref={ref}
-            className="bg-gradient-to-r from-sugarcane-green/10 to-ocean-blue/10 py-8 sticky top-0 z-40 backdrop-blur-sm"
+            className="bg-gradient-to-r from-sugarcane-green/10 to-ocean-blue/10 py-8"
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">

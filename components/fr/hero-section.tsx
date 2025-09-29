@@ -1,9 +1,13 @@
 "use client"
 import { motion } from "framer-motion"
+import { useState } from "react"
 import FadeIn from "@/components/animations/fade-in"
 import MagneticButton from "@/components/micro-interactions/magnetic-button"
+import ComingSoonModal from "@/components/coming-soon-modal"
 
 export default function HeroSectionFr() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   return (
     <section className="relative overflow-hidden">
       <div className="hero-gradient">
@@ -38,31 +42,27 @@ export default function HeroSectionFr() {
                   Obtenez l'App Gratuitement
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <a
-                    href="https://codebase-frontend.amanabiy.tech/downloads/app-release-v1.apk"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="transform hover:scale-105 transition-all duration-300"
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="transform hover:scale-105 transition-all duration-300 cursor-pointer"
                   >
                     <img
                       src="/images/app-store-badge.svg"
-                      alt="Télécharger sur l'App Store"
-                      className="h-14 w-auto"
+                      alt="Télécharger sur l'App Store - Bientôt disponible"
+                      className="h-14 w-auto opacity-90 hover:opacity-100"
                     />
-                  </a>
+                  </button>
 
-                  <a
-                    href="https://play.google.com/store/apps/details?id=com.piksou.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="transform hover:scale-105 transition-all duration-300"
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="transform hover:scale-105 transition-all duration-300 cursor-pointer"
                   >
                     <img
                       src="/images/google-play-badge.svg"
-                      alt="Disponible sur Google Play"
-                      className="h-14 w-auto"
+                      alt="Disponible sur Google Play - Bientôt disponible"
+                      className="h-14 w-auto opacity-90 hover:opacity-100"
                     />
-                  </a>
+                  </button>
                 </div>
               </div>
 
@@ -153,6 +153,13 @@ export default function HeroSectionFr() {
           />
         </svg>
       </div>
+
+      {/* Coming Soon Modal */}
+      <ComingSoonModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        language="fr"
+      />
     </section>
   )
 }

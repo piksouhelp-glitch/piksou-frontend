@@ -1,65 +1,52 @@
-import { UserPlus, Search, Bookmark, Calendar, BarChart3, UserCog } from "lucide-react"
+import { Search, Bookmark, TrendingUp, Filter } from "lucide-react"
 import FadeIn from "@/components/animations/fade-in"
 import StaggerContainer from "@/components/animations/stagger-container"
 import StaggerItem from "@/components/animations/stagger-item"
 import HoverCard from "@/components/micro-interactions/hover-card"
+import Image from "next/image"
 
 export default function FeaturesSection() {
   const features = [
     {
-      icon: UserPlus,
-      title: "Sign up & Track Savings",
-      description: "Create your account and start tracking how much you save on groceries",
-      creole: "Anrejistre ek gete to ekonomi",
-      emoji: "📝",
-      animation: "bounce" as const,
-    },
-    {
       icon: Search,
-      title: "Search & Filter",
-      description: "Find products by name, location, or supermarket",
-      creole: "Serser ek filtre",
+      title: "Smart Search & Compare",
+      description: "Find the best deals across all supermarkets in Mauritius with our intelligent search",
+      creole: "Serser ek konpare malin",
       emoji: "🔍",
-      animation: "pulse" as const,
+      screenshot: "/images/app-screenshot-1.jpg",
+      color: "from-sugarcane-green to-emerald-400",
     },
     {
       icon: Bookmark,
-      title: "Save Items for Later",
-      description: "Bookmark deals to revisit when you're ready to shop",
-      creole: "Gard pou pli tar",
+      title: "Bookmark Your Favorites",
+      description: "Save deals you love and never miss out on your favorite products",
+      creole: "Gard to favori",
       emoji: "🔖",
-      animation: "shake" as const,
-    },
-    /**
-    {
-      icon: Calendar,
-      title: "View Expiry Dates",
-      description: "Never miss a deal with clear expiration dates",
-      creole: "Gete dat ekspire",
-      emoji: "📅",
-      animation: "bounce" as const,
+      screenshot: "/images/app-screenshot-2.jpg",
+      color: "from-mango-yellow to-amber-400",
     },
     {
-      icon: BarChart3,
-      title: "Best Monthly Deals",
-      description: "Coming Soon: View the best deals of the month",
-      creole: "Meyler deal dimwa",
-      emoji: "📊",
-      animation: "pulse" as const,
+      icon: TrendingUp,
+      title: "Track Your Savings",
+      description: "See exactly how much you're saving with every purchase",
+      creole: "Gete to ekonomi",
+      emoji: "💰",
+      screenshot: "/images/app-screenshot-3.jpg",
+      color: "from-ocean-blue to-sky-400",
     },
     {
-      icon: UserCog,
-      title: "Update Your Profile",
-      description: "Customize your preferences for better recommendations",
-      creole: "Personalise to profil",
-      emoji: "⚙️",
-      animation: "rotate" as const,
+      icon: Filter,
+      title: "Smart Filtering",
+      description: "Filter deals by category, store, or price range to find exactly what you need",
+      creole: "Filtre malin",
+      emoji: "🎯",
+      screenshot: "/images/app-screenshot-2.jpg",
+      color: "from-purple-500 to-indigo-400",
     },
-    **/
   ]
 
   return (
-    <section className="section-padding bg-white dark:bg-gray-900 transition-colors duration-300">
+    <section id="features" className="section-padding bg-white dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn>
           <div className="text-center mb-16">
@@ -74,23 +61,51 @@ export default function FeaturesSection() {
           </div>
         </FadeIn>
 
-        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={0.15}>
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8" staggerDelay={0.2}>
           {features.map((feature, index) => (
             <StaggerItem key={index}>
-              <HoverCard className="organic-card p-6 flex items-start space-x-4 group" hoverScale={1.02}>
-                <div className="flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  <div className="w-16 h-16 bg-gradient-to-br from-sugarcane-green to-ocean-blue rounded-full flex items-center justify-center shadow-lg">
-                    <span className="text-2xl">{feature.emoji}</span>
+              <HoverCard className="organic-card overflow-hidden group" hoverScale={1.02}>
+                <div className="flex flex-col md:flex-row h-full">
+                  {/* Phone Mockup */}
+                  <div className="md:w-1/2 p-6 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700">
+                    <div className="relative">
+                      {/* Phone Frame */}
+                      <div className="w-40 h-80 bg-black rounded-3xl p-2 shadow-2xl">
+                        <div className="w-full h-full bg-white rounded-2xl overflow-hidden">
+                          <Image
+                            src={feature.screenshot}
+                            alt={`${feature.title} screenshot`}
+                            width={180}
+                            height={360}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
+                      {/* Floating Icon */}
+                      <div className={`absolute -top-3 -right-3 w-14 h-14 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                        <span className="text-xl">{feature.emoji}</span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-palm-shadow dark:text-white mb-1 handwritten group-hover:text-sugarcane-green transition-colors duration-300">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm creole-text mb-2">{feature.creole}</p>
-                  <p className="text-gray-600 dark:text-gray-400 transition-colors duration-300 group-hover:text-gray-700 dark:group-hover:text-gray-300">
-                    {feature.description}
-                  </p>
+
+                  {/* Content */}
+                  <div className="md:w-1/2 p-6 flex flex-col justify-center">
+                    <div className="mb-4">
+                      <h3 className="text-xl font-bold text-palm-shadow dark:text-white mb-2 handwritten group-hover:text-sugarcane-green transition-colors duration-300">
+                        {feature.title}
+                      </h3>
+                      <p className="text-base creole-text mb-3">{feature.creole}</p>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-400 transition-colors duration-300 group-hover:text-gray-700 dark:group-hover:text-gray-300 text-base leading-relaxed">
+                      {feature.description}
+                    </p>
+
+                    {/* Feature highlight */}
+                    <div className="mt-4 flex items-center space-x-2">
+                      <div className={`w-2 h-2 bg-gradient-to-br ${feature.color} rounded-full`}></div>
+                      <span className="text-xs font-medium text-gray-500 dark:text-gray-400">Key Feature</span>
+                    </div>
+                  </div>
                 </div>
               </HoverCard>
             </StaggerItem>

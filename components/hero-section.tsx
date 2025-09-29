@@ -1,9 +1,13 @@
 "use client"
 import { motion } from "framer-motion"
+import { useState } from "react"
 import FadeIn from "@/components/animations/fade-in"
 import MagneticButton from "@/components/micro-interactions/magnetic-button"
+import ComingSoonModal from "@/components/coming-soon-modal"
 
 export default function HeroSection() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   return (
     <section className="relative overflow-hidden">
       <div className="hero-gradient">
@@ -38,31 +42,27 @@ export default function HeroSection() {
                   Get the App for Free
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <a
-                    href="https://apps.apple.com/app/piksou"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="transform hover:scale-105 transition-all duration-300"
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="transform hover:scale-105 transition-all duration-300 cursor-pointer"
                   >
                     <img
                       src="/images/app-store-badge.svg"
-                      alt="Download on the App Store"
-                      className="h-14 w-auto"
+                      alt="Download on the App Store - Coming Soon"
+                      className="h-14 w-auto opacity-90 hover:opacity-100"
                     />
-                  </a>
+                  </button>
 
-                  <a
-                    href="https://play.google.com/store/apps/details?id=com.piksou.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="transform hover:scale-105 transition-all duration-300"
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="transform hover:scale-105 transition-all duration-300 cursor-pointer"
                   >
                     <img
                       src="/images/google-play-badge.svg"
-                      alt="Get it on Google Play"
-                      className="h-14 w-auto"
+                      alt="Get it on Google Play - Coming Soon"
+                      className="h-14 w-auto opacity-90 hover:opacity-100"
                     />
-                  </a>
+                  </button>
                 </div>
               </div>
 
@@ -147,12 +147,19 @@ export default function HeroSection() {
       <div className="absolute bottom-0 left-0 right-0 h-16">
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-full">
           <path
-            d="M0,60 Q300,20 600,60 T1200,60 L1200,120 Z"
+            d="M0,60 Q300,20 600,60 T1200,60 L1200,60 L1200,120 Z"
             fill="rgba(255,255,255,0.8)"
             className="dark:fill-gray-900/80"
           />
         </svg>
       </div>
+
+      {/* Coming Soon Modal */}
+      <ComingSoonModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        language="en"
+      />
     </section>
   )
 }

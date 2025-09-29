@@ -23,6 +23,28 @@ export default function DownloadSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-6 mb-8">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="transform hover:scale-105 transition-all duration-300 cursor-pointer"
+            >
+              <img
+                src="/images/app-store-badge.svg"
+                alt="Download on the App Store - Coming Soon"
+                className="h-14 w-auto opacity-90 hover:opacity-100"
+              />
+            </button>
+
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="transform hover:scale-105 transition-all duration-300 cursor-pointer"
+            >
+              <img
+                src="/images/google-play-badge.svg"
+                alt="Get it on Google Play - Coming Soon"
+                className="h-14 w-auto opacity-90 hover:opacity-100"
+              />
+            </button>
+
             <a
               href="https://codebase-frontend.amanabiy.tech/downloads/app-release-v1.apk"
               target="_blank"

@@ -61,7 +61,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -114,7 +114,7 @@ export default function RootLayout({
         <meta name="DC.coverage" content="Mauritius" />
         <meta name="DC.rights" content="© 2024 PiKSou. All rights reserved." />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange={false}>
           {children}
         </ThemeProvider>

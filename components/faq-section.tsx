@@ -18,6 +18,11 @@ export default function FAQSection() {
         "Yes, PiKSou is completely free to download and use. We believe everyone should have access to tools that help them save money on groceries.",
     },
     {
+      question: "How are deals collected?",
+      answer:
+        "Our team manually collects and verifies all deals to ensure accuracy. We visit supermarkets, check their websites, and verify each deal before publishing it to the app.",
+    },
+    {
       question: "Do I need to create an account to use PiKSou?",
       answer:
         "While you can browse deals without an account, creating a free account allows you to save favorite items, get personalized recommendations, and track your savings over time.",

@@ -33,7 +33,7 @@ export default function AboutSection() {
   ]
 
   return (
-    <section className="section-padding market-section hidden" id="features">
+    <section className="section-padding market-section hidden" id="about">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn>
           <div className="text-center mb-16">

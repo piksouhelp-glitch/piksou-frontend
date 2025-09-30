@@ -107,8 +107,8 @@ export default function Home() {
         <ValuePropositionStrip />
         <TopDealsSection />
         <AboutSection />
-        <MonetizationTransparency />
         <FeaturesSection />
+        <MonetizationTransparency />
         <AppPreviewSection />
         <HowItWorksSection />
         <FAQSection />

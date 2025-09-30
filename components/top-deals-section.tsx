@@ -145,7 +145,37 @@ export default function TopDealsSection() {
     }
 
     return (
-        <section className="py-12 bg-gradient-to-br from-mango-yellow/5 to-sunset-orange/5">
+        <section className="relative overflow-hidden py-12 bg-gradient-to-br from-mango-yellow/5 to-sunset-orange/5 dark:from-gray-900 dark:to-gray-800">
+            {/* Dark mode dotted pattern overlay */}
+            <div
+                className="pointer-events-none absolute inset-0 hidden dark:block opacity-20"
+                style={{
+                    backgroundImage: "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)",
+                    backgroundSize: "24px 24px",
+                }}
+            />
+            {/* Soft animated gradient blobs */}
+            <motion.div
+                aria-hidden
+                className="pointer-events-none"
+                initial={false}
+            >
+                <motion.span
+                    className="hidden dark:block absolute -top-16 -left-16 w-72 h-72 rounded-full blur-3xl bg-gradient-to-br from-sugarcane-green/20 to-ocean-blue/20"
+                    animate={{ x: [0, 30, -20, 0], y: [0, 20, -10, 0] }}
+                    transition={{ duration: 18, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+                />
+                <motion.span
+                    className="hidden dark:block absolute top-1/3 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full blur-3xl bg-gradient-to-br from-mango-yellow/15 to-sunset-orange/15"
+                    animate={{ x: [0, -20, 20, 0], y: [0, 15, -15, 0] }}
+                    transition={{ duration: 22, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+                />
+                <motion.span
+                    className="hidden dark:block absolute -bottom-20 -right-16 w-72 h-72 rounded-full blur-3xl bg-gradient-to-br from-ocean-blue/20 to-sugarcane-green/20"
+                    animate={{ x: [0, -25, 15, 0], y: [0, -10, 20, 0] }}
+                    transition={{ duration: 20, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+                />
+            </motion.div>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <motion.div

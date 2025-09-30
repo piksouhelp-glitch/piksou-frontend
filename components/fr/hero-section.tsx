@@ -81,9 +81,9 @@ export default function HeroSectionFr() {
                   {/* Main screenshot - larger and centered */}
                   <div className="absolute top-2 left-1/2 transform -translate-x-1/2 z-20">
                     <div className="w-[220px] h-[300px] bg-gradient-to-br from-sugarcane-green to-ocean-blue rounded-3xl p-4 organic-card shadow-2xl">
-                      <div className="bg-white rounded-2xl h-full p-3 shadow-lg overflow-hidden">
+                      <div className="bg-white dark:bg-gray-800 rounded-2xl h-full p-3 shadow-lg overflow-hidden">
                         <div className="flex items-center justify-center mb-3">
-                          <h3 className="text-sm font-bold text-gray-800">App PikSou</h3>
+                          <h3 className="text-sm font-bold text-gray-800 dark:text-white">App PikSou</h3>
                         </div>
                         <div className="relative h-[calc(100%-2rem)]">
                           <img
@@ -99,9 +99,9 @@ export default function HeroSectionFr() {
                   {/* Secondary screenshot - smaller, behind and to the left */}
                   <div className="absolute top-6 left-2 z-10 transform rotate-[-8deg]">
                     <div className="w-[180px] h-[240px] bg-gradient-to-br from-mango-yellow to-sunset-orange rounded-2xl p-3 organic-card shadow-xl">
-                      <div className="bg-white rounded-xl h-full p-2 shadow-lg overflow-hidden">
+                      <div className="bg-white dark:bg-gray-800 rounded-xl h-full p-2 shadow-lg overflow-hidden">
                         <div className="flex items-center justify-center mb-2">
-                          <h3 className="text-xs font-bold text-gray-800">Offres</h3>
+                          <h3 className="text-xs font-bold text-gray-800 dark:text-white">Offres</h3>
                         </div>
                         <div className="relative h-[calc(100%-1.5rem)]">
                           <img
@@ -117,9 +117,9 @@ export default function HeroSectionFr() {
                   {/* Third screenshot - smaller, behind and to the right */}
                   <div className="absolute top-8 right-2 z-10 transform rotate-[6deg]">
                     <div className="w-[170px] h-[220px] bg-gradient-to-br from-ocean-blue to-sugarcane-green rounded-2xl p-3 organic-card shadow-xl">
-                      <div className="bg-white rounded-xl h-full p-2 shadow-lg overflow-hidden">
+                      <div className="bg-white dark:bg-gray-800 rounded-xl h-full p-2 shadow-lg overflow-hidden">
                         <div className="flex items-center justify-center mb-2">
-                          <h3 className="text-xs font-bold text-gray-800">Comparer</h3>
+                          <h3 className="text-xs font-bold text-gray-800 dark:text-white">Comparer</h3>
                         </div>
                         <div className="relative h-[calc(100%-1.5rem)]">
                           <img

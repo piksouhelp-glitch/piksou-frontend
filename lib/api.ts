@@ -174,19 +174,52 @@ class ApiService {
 
     // New endpoints for deals
     async getHomePublicData(): Promise<ApiResponse<HomePublicResponse>> {
-        // Try direct API first, then fallback to our proxy
+        const isBrowser = typeof window !== "undefined"
+
+        // In the browser: use our Next.js proxy first to avoid CORS, then fallback to direct
+        if (isBrowser) {
+            try {
+                const response = await fetch('/api/deals', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+
+                if (!response.ok) {
+                    throw new Error(`Proxy API error: ${response.status}`)
+                }
+
+                const data = await response.json()
+                return { data, success: true }
+            } catch (proxyError) {
+                console.warn("Proxy API failed in browser, trying direct:", proxyError)
+                try {
+                    const directResult = await this.request<HomePublicResponse>("api/products/home-public/")
+                    if (directResult.success) {
+                        return directResult
+                    }
+                } catch (directError) {
+                    console.error("Direct API also failed in browser:", directError)
+                }
+                return { error: "Unable to fetch deals. Please try again later.", success: false }
+            }
+        }
+
+        // On the server: try direct first (faster), then fallback to proxy
         try {
             const directResult = await this.request<HomePublicResponse>("api/products/home-public/")
             if (directResult.success) {
                 return directResult
             }
         } catch (error) {
-            console.warn("Direct API failed, trying proxy:", error)
+            console.warn("Direct API failed on server, trying proxy:", error)
         }
 
-        // Fallback to our Next.js API route
         try {
-            const response = await fetch('/api/deals', {
+            const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+            const proxyUrl = siteUrl ? `${siteUrl.replace(/\/$/, '')}/api/deals` : '/api/deals'
+            const response = await fetch(proxyUrl, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -200,7 +233,7 @@ class ApiService {
             const data = await response.json()
             return { data, success: true }
         } catch (error: any) {
-            console.error("Both direct and proxy API failed:", error)
+            console.error("Both direct and proxy API failed on server:", error)
             return { error: "Unable to fetch deals. Please try again later.", success: false }
         }
     }

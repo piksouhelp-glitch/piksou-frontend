@@ -113,7 +113,6 @@ class ApiService {
     ): Promise<ApiResponse<T>> {
         try {
             const url = `${BASE_URL}${endpoint}`
-            console.log("Making API request to:", url)
 
             const response = await fetch(url, {
                 method: "GET",
@@ -125,9 +124,6 @@ class ApiService {
                 },
                 ...options,
             })
-
-            console.log("Response status:", response.status)
-            console.log("Response headers:", response.headers)
 
             if (!response.ok) {
                 let errorMessage = `HTTP error! status: ${response.status}`
@@ -141,7 +137,6 @@ class ApiService {
             }
 
             const data = await response.json()
-            console.log("API response received:", data)
             return { data, success: true }
         } catch (error: any) {
             console.error("API request failed:", {
@@ -174,35 +169,43 @@ class ApiService {
 
     // New endpoints for deals
     async getHomePublicData(): Promise<ApiResponse<HomePublicResponse>> {
-        // Try direct API first, then fallback to our proxy
+        // Try our Next.js API route first (more reliable)
         try {
-            const directResult = await this.request<HomePublicResponse>("api/products/home-public/")
-            if (directResult.success) {
-                return directResult
-            }
-        } catch (error) {
-            console.warn("Direct API failed, trying proxy:", error)
-        }
+            const controller = new AbortController()
+            const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
 
-        // Fallback to our Next.js API route
-        try {
             const response = await fetch('/api/deals', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                signal: controller.signal,
             })
 
+            clearTimeout(timeoutId)
+
             if (!response.ok) {
-                throw new Error(`Proxy API error: ${response.status}`)
+                throw new Error(`Local API error: ${response.status} ${response.statusText}`)
             }
 
             const data = await response.json()
             return { data, success: true }
+        } catch (error) {
+            console.warn("Local API failed, trying direct API:", error)
+        }
+
+        // Fallback to direct API
+        try {
+            const directResult = await this.request<HomePublicResponse>("api/products/home-public/")
+            if (directResult.success) {
+                return directResult
+            }
         } catch (error: any) {
-            console.error("Both direct and proxy API failed:", error)
+            console.error("Both local and direct API failed:", error)
             return { error: "Unable to fetch deals. Please try again later.", success: false }
         }
+
+        return { error: "Unable to fetch deals. Please try again later.", success: false }
     }
 
     async getTopDeals(): Promise<ApiResponse<Deal[]>> {

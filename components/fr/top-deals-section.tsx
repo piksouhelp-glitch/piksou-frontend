@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { ShoppingBag, MapPin, Clock, Star, TrendingUp, ExternalLink } from "lucide-react"
 import { apiService, Deal } from "@/lib/api"
+import { diversifyDeals } from "@/lib/utils"
 import DealModal from "@/components/fr/deal-modal"
 
 export default function TopDealsSectionFr() {
@@ -23,7 +24,9 @@ export default function TopDealsSectionFr() {
             const result = await apiService.getTopDeals()
 
             if (result.success && result.data) {
-                setDeals(result.data)
+                // Apply diversification to avoid duplicates and ensure variety
+                const diversifiedDeals = diversifyDeals(result.data, 4)
+                setDeals(diversifiedDeals)
                 setRetryCount(0) // Reset retry count on success
             } else {
                 throw new Error(result.error || "Échec du chargement des offres")
@@ -166,7 +169,7 @@ export default function TopDealsSectionFr() {
 
                 {/* Deals Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {deals.slice(0, 4).map((deal, index) => (
+                    {deals.map((deal, index) => (
                         <motion.div
                             key={deal.id}
                             initial={{ opacity: 0, y: 20 }}

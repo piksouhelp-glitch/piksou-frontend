@@ -84,8 +84,10 @@ export default function AllDealsPageFr() {
     // Filter and sort deals
     const filteredDeals = deals
         .filter(deal => {
-            const matchesSearch = deal.product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                deal.product.description.toLowerCase().includes(searchTerm.toLowerCase())
+            const productName = deal.product.name_fr || deal.product.name
+            const productDescription = deal.product.description_fr || deal.product.description
+            const matchesSearch = productName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                productDescription.toLowerCase().includes(searchTerm.toLowerCase())
             const matchesStore = selectedStore === "all" || deal.store.id === selectedStore
             const matchesCategory = selectedCategory === "all" || deal.product.category.id === selectedCategory
             return matchesSearch && matchesStore && matchesCategory
@@ -97,7 +99,9 @@ export default function AllDealsPageFr() {
                 case "price":
                     return parseFloat(a.discounted_price) - parseFloat(b.discounted_price)
                 case "name":
-                    return a.product.name.localeCompare(b.product.name)
+                    const nameA = a.product.name_fr || a.product.name
+                    const nameB = b.product.name_fr || b.product.name
+                    return nameA.localeCompare(nameB)
                 default:
                     return 0
             }
@@ -202,8 +206,8 @@ export default function AllDealsPageFr() {
                                 <button
                                     onClick={() => setViewMode("grid")}
                                     className={`p-2 rounded-lg transition-colors ${viewMode === "grid"
-                                            ? "bg-[#48C774] text-white"
-                                            : "bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400"
+                                        ? "bg-[#48C774] text-white"
+                                        : "bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400"
                                         }`}
                                 >
                                     <Grid size={20} />
@@ -211,8 +215,8 @@ export default function AllDealsPageFr() {
                                 <button
                                     onClick={() => setViewMode("list")}
                                     className={`p-2 rounded-lg transition-colors ${viewMode === "list"
-                                            ? "bg-[#48C774] text-white"
-                                            : "bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400"
+                                        ? "bg-[#48C774] text-white"
+                                        : "bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400"
                                         }`}
                                 >
                                     <List size={20} />
@@ -246,7 +250,7 @@ export default function AllDealsPageFr() {
                                 <div className="relative w-full h-32 mb-4 overflow-hidden">
                                     <img
                                         src={deal.product.image}
-                                        alt={deal.product.name}
+                                        alt={deal.product.name_fr || deal.product.name}
                                         className="w-full h-full object-contain bg-gray-50 dark:bg-gray-700"
                                     />
                                     <div className="absolute top-2 right-2">
@@ -269,7 +273,7 @@ export default function AllDealsPageFr() {
                                 {/* Product Name */}
                                 <div className="px-4 mb-3">
                                     <h3 className="font-semibold text-gray-900 dark:text-white text-sm line-clamp-2">
-                                        {deal.product.name}
+                                        {deal.product.name_fr || deal.product.name}
                                     </h3>
                                 </div>
 
@@ -312,7 +316,7 @@ export default function AllDealsPageFr() {
                                     <div className="w-20 h-20 flex-shrink-0">
                                         <img
                                             src={deal.product.image}
-                                            alt={deal.product.name}
+                                            alt={deal.product.name_fr || deal.product.name}
                                             className="w-full h-full object-contain bg-gray-50 dark:bg-gray-700 rounded-lg"
                                         />
                                     </div>
@@ -331,7 +335,7 @@ export default function AllDealsPageFr() {
                                             </span>
                                         </div>
                                         <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                                            {deal.product.name}
+                                            {deal.product.name_fr || deal.product.name}
                                         </h3>
                                         <div className="flex items-center space-x-4">
                                             <span className="text-lg font-bold text-[#48C774]">

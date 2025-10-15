@@ -34,7 +34,7 @@ export default function HeroSection() {
               </FadeIn>
 
               <p className="text-xl md:text-2xl text-palm-shadow dark:text-gray-300 font-medium">
-                Compare supermarket deals in Mauritius and save every week.
+                Compare supermarkets deals in Mauritius and save every week.
               </p>
 
               <div className="space-y-4">

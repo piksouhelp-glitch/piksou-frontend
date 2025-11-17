@@ -16,8 +16,8 @@ export const LEGAL_CONTENT = {
     phone: "",
     emails: {
       general: "contact@piksou.com",
-      privacy: "privacy@piksou.com",
-      legal: "contact@piksou.com",
+      privacy: "",
+      legal: "",
     },
   },
 
@@ -116,7 +116,7 @@ export const LEGAL_CONTENT = {
             {
               subtitle: "",
               content:
-                "You may access, correct, or request deletion of your personal data (“right to be forgotten”), withdraw consent for specific processing, and disable permissions such as camera, photos, or location at any time. To exercise your rights, email privacy@piksou.com.",
+                "You may access, correct, or request deletion of your personal data (“right to be forgotten”), withdraw consent for specific processing, and disable permissions such as camera, photos, or location at any time. To exercise your rights, email contact@piksou.com.",
             },
           ],
         },

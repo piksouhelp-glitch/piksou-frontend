@@ -4,6 +4,7 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, MapPin, Clock, Star, ShoppingBag, ExternalLink, Calendar, Tag, Package } from "lucide-react"
 import { Deal } from "@/lib/api"
+import { getStoreInitials } from "@/lib/utils"
 
 interface DealModalProps {
     deal: Deal | null
@@ -93,11 +94,15 @@ export default function DealModal({ deal, isOpen, onClose }: DealModalProps) {
                         <div className="p-6 space-y-6">
                             {/* Store Info */}
                             <div className="flex items-center space-x-3">
-                                <img
+                                {/* Store logos disabled per legal guidance */}
+                                {/* <img
                                     src={deal.store.logo}
                                     alt={deal.store.name}
                                     className="w-10 h-10 rounded-lg object-contain bg-white p-1 shadow-sm border border-gray-200"
-                                />
+                                /> */}
+                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-sunset-orange to-mango-yellow text-white text-sm font-bold flex items-center justify-center shadow-sm">
+                                    {getStoreInitials(deal.store.name)}
+                                </div>
                                 <div>
                                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                                         {deal.store.name}
@@ -158,18 +163,6 @@ export default function DealModal({ deal, isOpen, onClose }: DealModalProps) {
                                     </div>
                                 </div>
 
-                                {/* Quantity Required */}
-                                <div className="flex items-center space-x-3 p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
-                                    <Package className="text-orange-600 dark:text-orange-400" size={20} />
-                                    <div>
-                                        <div className="text-sm font-medium text-orange-900 dark:text-orange-100">
-                                            Quantity Required
-                                        </div>
-                                        <div className="text-sm text-orange-700 dark:text-orange-300">
-                                            {deal.quantity_required} item{deal.quantity_required > 1 ? 's' : ''}
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
                             {/* Product Details */}

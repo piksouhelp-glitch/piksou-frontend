@@ -127,3 +127,17 @@ export function diversifyDeals(deals: Deal[], maxDeals: number = 4): Deal[] {
 
   return selectedDeals
 }
+
+export function getStoreInitials(name: string, maxChars: number = 2): string {
+  if (!name) return "ST"
+
+  const initials = name
+    .trim()
+    .split(/\s+/)
+    .map(part => part.charAt(0))
+    .join("")
+    .slice(0, Math.max(1, maxChars))
+    .toUpperCase()
+
+  return initials || "ST"
+}

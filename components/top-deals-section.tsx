@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { ShoppingBag, MapPin, Clock, Star, TrendingUp, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react"
 import { apiService, Deal } from "@/lib/api"
-import { diversifyDeals } from "@/lib/utils"
+import { diversifyDeals, getStoreInitials } from "@/lib/utils"
 import DealModal from "./deal-modal"
 
 export default function TopDealsSection() {
@@ -272,11 +272,15 @@ export default function TopDealsSection() {
                                         {/* Store Info */}
                                         <div className="flex items-center justify-between mb-2 px-4">
                                             <div className="flex items-center space-x-3">
-                                                <img
+                                                {/* Store logos disabled per legal guidance */}
+                                                {/* <img
                                                     src={deal.store.logo}
                                                     alt={deal.store.name}
                                                     className="w-8 h-8 rounded-lg object-contain bg-white p-1 shadow-sm border border-gray-200"
-                                                />
+                                                /> */}
+                                                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-sunset-orange to-mango-yellow text-white text-xs font-bold flex items-center justify-center shadow-sm">
+                                                    {getStoreInitials(deal.store.name)}
+                                                </div>
                                                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{deal.store.name}</span>
                                             </div>
                                         </div>

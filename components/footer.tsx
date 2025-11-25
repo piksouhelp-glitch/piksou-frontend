@@ -15,8 +15,8 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Mail size={18} className="text-[#48C774]" />
-                <a href="mailto:hello@piksou.mu" className="hover:text-[#48C774] transition-colors duration-300">
-                  hello@piksou.mu
+                <a href="mailto:contact@piksou.com" className="hover:text-[#48C774] transition-colors duration-300">
+                  contact@piksou.com
                 </a>
               </div>
               <div className="flex items-center space-x-3">

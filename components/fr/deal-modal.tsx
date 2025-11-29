@@ -1,8 +1,9 @@
 "use client"
 
 import { motion, AnimatePresence } from "framer-motion"
-import { X, ShoppingBag, ExternalLink, Clock, MapPin, Tag, Info, Scale, Package, Globe } from "lucide-react"
+import { X, ShoppingBag, ExternalLink, Calendar, Tag, Package } from "lucide-react"
 import { Deal } from "@/lib/api"
+import { getStoreInitials } from "@/lib/utils"
 
 interface DealModalProps {
     deal: Deal | null
@@ -11,6 +12,8 @@ interface DealModalProps {
 }
 
 export default function DealModal({ deal, isOpen, onClose }: DealModalProps) {
+    if (!deal) return null
+
     const formatPrice = (price: string) => {
         return `Rs ${parseFloat(price).toFixed(2)}`
     }
@@ -22,182 +25,194 @@ export default function DealModal({ deal, isOpen, onClose }: DealModalProps) {
     const formatDate = (dateString: string) => {
         const date = new Date(dateString)
         return date.toLocaleDateString("fr-FR", {
+            weekday: "long",
+            year: "numeric",
             month: "long",
-            day: "numeric",
-            year: "numeric"
+            day: "numeric"
         })
     }
 
-    const formatTimeLeft = (endDate: string) => {
-        const now = new Date()
-        const end = new Date(endDate)
-        const diff = end.getTime() - now.getTime()
+    const savings = parseFloat(deal.original_price) - parseFloat(deal.discounted_price)
 
-        if (diff <= 0) return "Expiré"
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24))
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
-
-        if (days > 0) return `${days}j ${hours}h restantes`
-        if (hours > 0) return `${hours}h ${minutes}m restantes`
-        return `${minutes}m restantes`
-    }
-
-    if (!deal) return null
+    const productName = deal.product.name_fr || deal.product.name
+    const productDescription = deal.product.description_fr || deal.product.description
 
     return (
         <AnimatePresence>
             {isOpen && (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-                    onClick={onClose}
-                >
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                    {/* Backdrop */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+                        onClick={onClose}
+                    />
+
+                    {/* Modal */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                        transition={{ type: "spring", duration: 0.5 }}
+                        exit={{ opacity: 0, scale: 0.95, y: 20 }}
                         className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden"
-                        onClick={(e) => e.stopPropagation()}
                     >
-                        {/* Header with Image and Close Button */}
+                        {/* Header */}
                         <div className="relative">
+                            {/* Product Image */}
                             <div className="h-64 bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
                                 <img
                                     src={deal.product.image}
-                                    alt={deal.product.name}
+                                    alt={productName}
                                     className="max-w-full max-h-full object-contain"
                                 />
-                            </div>
-
-                            {/* Discount Badge */}
-                            <div className="absolute top-4 right-16">
-                                <span className="bg-[#48C774] text-white text-lg font-bold px-4 py-2 rounded-full shadow-lg">
-                                    {formatDiscountPercentage(deal.discount_percentage)}
-                                </span>
                             </div>
 
                             {/* Close Button */}
                             <button
                                 onClick={onClose}
-                                className="absolute top-4 right-4 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white rounded-full p-2 transition-all duration-200 shadow-lg"
+                                className="absolute top-4 right-4 bg-white/90 hover:bg-white text-gray-700 p-2 rounded-full shadow-lg transition-colors duration-200"
                             >
-                                <X size={24} />
+                                <X size={20} />
                             </button>
+
+                            {/* Discount Badge */}
+                            <div className="absolute top-4 left-4">
+                                <span className="bg-[#48C774] text-white px-4 py-2 rounded-full text-lg font-bold">
+                                    {formatDiscountPercentage(deal.discount_percentage)}
+                                </span>
+                            </div>
                         </div>
 
                         {/* Content */}
-                        <div className="p-6 max-h-[calc(90vh-16rem)] overflow-y-auto">
+                        <div className="p-6 space-y-6">
                             {/* Store Info */}
-                            <div className="flex items-center space-x-3 mb-6">
-                                <img
+                            <div className="flex items-center space-x-3">
+                                {/* Logos magasins retirés pour raisons légales */}
+                                {/* <img
                                     src={deal.store.logo}
                                     alt={deal.store.name}
-                                    className="w-12 h-12 rounded-full object-contain bg-white p-2 shadow-md border border-gray-200"
-                                />
+                                    className="w-10 h-10 rounded-lg object-contain bg-white p-1 shadow-sm border border-gray-200"
+                                /> */}
+                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-sunset-orange to-mango-yellow text-white text-sm font-bold flex items-center justify-center shadow-sm">
+                                    {getStoreInitials(deal.store.name)}
+                                </div>
                                 <div>
-                                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">{deal.store.name}</h3>
-                                    <p className="text-gray-600 dark:text-gray-400">{deal.product.category.name}</p>
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                                        {deal.store.name}
+                                    </h3>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                                        {deal.product.category.name}
+                                    </p>
                                 </div>
                             </div>
 
-                            {/* Product Name */}
-                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                                {deal.product.name}
-                            </h2>
-
-                            {/* Description */}
-                            <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-                                {deal.product.description}
-                            </p>
+                            {/* Product Details */}
+                            <div>
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                                    {productName}
+                                </h2>
+                                {productDescription && (
+                                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                                        {productDescription}
+                                    </p>
+                                )}
+                            </div>
 
                             {/* Pricing */}
                             <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
-                                <div className="flex items-baseline space-x-4 mb-2">
-                                    <span className="text-3xl font-bold text-[#48C774]">
-                                        {formatPrice(deal.discounted_price)}
-                                    </span>
-                                    <span className="text-xl text-gray-500 line-through">
-                                        {formatPrice(deal.original_price)}
-                                    </span>
+                                <div className="flex items-center justify-between mb-3">
+                                    <div>
+                                        <span className="text-3xl font-bold text-[#48C774]">
+                                            {formatPrice(deal.discounted_price)}
+                                        </span>
+                                        <span className="text-xl text-gray-500 dark:text-gray-400 line-through ml-3">
+                                            {formatPrice(deal.original_price)}
+                                        </span>
+                                    </div>
+                                    <div className="text-right">
+                                        <div className="text-sm text-gray-600 dark:text-gray-400">Vous économisez</div>
+                                        <div className="text-lg font-bold text-green-600">
+                                            Rs {savings.toFixed(2)}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="text-lg text-[#48C774] font-semibold">
-                                    Économisez Rs {(parseFloat(deal.original_price) - parseFloat(deal.discounted_price)).toFixed(2)}
+                                <div className="text-sm text-gray-600 dark:text-gray-400">
+                                    {formatDiscountPercentage(deal.discount_percentage)} de réduction
                                 </div>
                             </div>
 
-                            {/* Deal Details */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-                                <div className="flex items-center space-x-3 text-gray-700 dark:text-gray-300">
-                                    <Clock className="text-[#48C774]" size={20} />
+                            {/* Deal Information */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {/* Validity Period */}
+                                <div className="flex items-center space-x-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                                    <Calendar className="text-blue-600 dark:text-blue-400" size={20} />
                                     <div>
-                                        <p className="font-medium">Expire le</p>
-                                        <p className="text-sm">{formatDate(deal.end_date)}</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-center space-x-3 text-gray-700 dark:text-gray-300">
-                                    <Package className="text-[#48C774]" size={20} />
-                                    <div>
-                                        <p className="font-medium">Quantité</p>
-                                        <p className="text-sm">{deal.quantity_available} disponibles</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-center space-x-3 text-gray-700 dark:text-gray-300">
-                                    <Tag className="text-[#48C774]" size={20} />
-                                    <div>
-                                        <p className="font-medium">Marque</p>
-                                        <p className="text-sm">{deal.product.brand}</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-center space-x-3 text-gray-700 dark:text-gray-300">
-                                    <Scale className="text-[#48C774]" size={20} />
-                                    <div>
-                                        <p className="font-medium">Poids</p>
-                                        <p className="text-sm">{deal.product.weight}</p>
+                                        <div className="text-sm font-medium text-blue-900 dark:text-blue-100">
+                                            Valable jusqu'au
+                                        </div>
+                                        <div className="text-sm text-blue-700 dark:text-blue-300">
+                                            {formatDate(deal.end_date)}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Time Left */}
-                            <div className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg p-4 mb-6">
-                                <div className="flex items-center space-x-2 text-orange-700 dark:text-orange-300">
-                                    <Clock size={20} />
-                                    <span className="font-semibold">
-                                        {formatTimeLeft(deal.end_date)}
-                                    </span>
+                            {/* Product Details */}
+                            {(deal.product.brand || deal.product.weight || deal.product.unit) && (
+                                <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+                                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                                        Détails du produit
+                                    </h4>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        {deal.product.brand && (
+                                            <div className="flex items-center space-x-2">
+                                                <Tag size={16} className="text-gray-400" />
+                                                <span className="text-sm text-gray-600 dark:text-gray-400">Marque :</span>
+                                                <span className="text-sm font-medium text-gray-900 dark:text-white">
+                                                    {deal.product.brand}
+                                                </span>
+                                            </div>
+                                        )}
+                                        {(deal.product.weight || deal.product.unit) && (
+                                            <div className="flex items-center space-x-2">
+                                                <Package size={16} className="text-gray-400" />
+                                                <span className="text-sm text-gray-600 dark:text-gray-400">Format :</span>
+                                                <span className="text-sm font-medium text-gray-900 dark:text-white">
+                                                    {deal.product.weight} {deal.product.unit}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
+                            )}
+
+                            {/* Deal Conditions */}
+                            {deal.deal_conditions.notes && (
+                                <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+                                    <h4 className="text-sm font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
+                                        Conditions de l'offre
+                                    </h4>
+                                    <p className="text-sm text-yellow-700 dark:text-yellow-300">
+                                        {deal.deal_conditions.notes}
+                                    </p>
+                                </div>
+                            )}
 
                             {/* Action Buttons */}
-                            <div className="flex flex-col sm:flex-row gap-4">
-                                <motion.button
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="flex-1 bg-[#48C774] hover:bg-[#3ea85f] text-white font-semibold py-4 px-6 rounded-lg transition-all duration-200 flex items-center justify-center shadow-lg hover:shadow-xl"
-                                >
+                            <div className="flex space-x-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+                                <button className="flex-1 bg-[#48C774] hover:bg-[#3ea85f] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center">
                                     <ShoppingBag size={20} className="mr-2" />
-                                    Ajouter au Panier
-                                </motion.button>
-
-                                <motion.button
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="flex-1 bg-white dark:bg-gray-700 text-[#48C774] border-2 border-[#48C774] hover:bg-[#48C774] hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center"
-                                >
+                                    Ajouter au panier
+                                </button>
+                                <button className="flex-1 bg-white dark:bg-gray-700 text-[#48C774] border-2 border-[#48C774] hover:bg-[#48C774] hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center">
                                     <ExternalLink size={20} className="mr-2" />
-                                    Visiter le Magasin
-                                </motion.button>
+                                    Visiter le magasin
+                                </button>
                             </div>
                         </div>
                     </motion.div>
-                </motion.div>
+                </div>
             )}
         </AnimatePresence>
     )

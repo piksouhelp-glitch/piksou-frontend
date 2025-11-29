@@ -7,8 +7,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Send, CheckCircle, AlertCircle, User, Mail, MessageSquare, Phone } from "lucide-react"
 import RippleButton from "@/components/micro-interactions/ripple-button"
 import AnimatedIcon from "@/components/micro-interactions/animated-icon"
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:5011"
+import { apiService } from "@/lib/api"
 
 interface FormData {
   name: string
@@ -41,6 +40,7 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [focusedField, setFocusedField] = useState<string | null>(null)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -145,6 +145,7 @@ export default function ContactForm() {
 
     setIsSubmitting(true)
     setIsSubmitted(false)
+    setSubmitError(null)
 
     try {
       const payload: Record<string, string> = {
@@ -159,31 +160,25 @@ export default function ContactForm() {
           payload.phone = formData.phone
         }
       }
-      
-      const response = await fetch(`${BASE_URL}api/support/messages/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...(token ? {Authorization: `Bearer ${token}` } : {}),
-        },
-        body: JSON.stringify(payload),
-      })
 
-      if(!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.detail || "Failed to submit message.")
+      const result = await apiService.sendSupportMessage(payload, token || undefined)
+
+      if (!result.success) {
+        throw new Error(result.error || "Failed to submit message.")
       }
 
       setIsSubmitted(true)
       setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          subject: "",
-          message: "",
-        })
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      })
     } catch (error: any) {
-      console.error("Submission error:", error.message || error)
+      const errorMessage = error.message || "Failed to submit message. Please try again."
+      console.error("Submission error:", errorMessage)
+      setSubmitError(errorMessage)
     } finally {
       setIsSubmitting(false)
     }
@@ -502,7 +497,7 @@ export default function ContactForm() {
             w-full py-3 px-6 text-lg font-medium
             ${isSubmitting ? "opacity-75 cursor-not-allowed" : ""}
           `}
-          onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent)}
+          onClick={() => handleSubmit({ preventDefault: () => { } } as React.FormEvent)}
         >
           <div className="flex items-center justify-center space-x-2">
             {isSubmitting ? (
@@ -526,6 +521,21 @@ export default function ContactForm() {
           </div>
         </RippleButton>
       </div>
+
+      {/* Error Message */}
+      <AnimatePresence>
+        {submitError && (
+          <motion.div
+            initial={{ opacity: 0, y: -10, height: 0 }}
+            animate={{ opacity: 1, y: 0, height: "auto" }}
+            exit={{ opacity: 0, y: -10, height: 0 }}
+            className="mt-4 flex items-center space-x-2 text-red-500 text-sm bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3"
+          >
+            <AlertCircle size={16} />
+            <span>{submitError}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Form Footer */}
       <div className="mt-6 text-center">

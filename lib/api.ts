@@ -112,17 +112,20 @@ class ApiService {
         options: RequestInit = {}
     ): Promise<ApiResponse<T>> {
         try {
-            const url = `${BASE_URL}${endpoint}`
+            // Ensure proper URL construction with slash between BASE_URL and endpoint
+            const baseUrl = BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL
+            const endpointPath = endpoint.startsWith('/') ? endpoint : `/${endpoint}`
+            const url = `${baseUrl}${endpointPath}`
 
             const response = await fetch(url, {
-                method: "GET",
+                ...options,
+                method: options.method || "GET",
                 mode: "cors",
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "application/json",
                     ...options.headers,
                 },
-                ...options,
             })
 
             if (!response.ok) {
@@ -160,11 +163,31 @@ class ApiService {
 
     // Support messages (existing functionality)
     async sendSupportMessage(payload: any, token?: string) {
-        return this.request("api/support/messages/", {
-            method: "POST",
-            headers: token ? { Authorization: `Bearer ${token}` } : {},
-            body: JSON.stringify(payload),
-        })
+        // Use Next.js API route to avoid CORS issues
+        try {
+            const response = await fetch('/api/support/messages', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                },
+                body: JSON.stringify(payload),
+            })
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}))
+                throw new Error(errorData.error || errorData.detail || `HTTP error! status: ${response.status}`)
+            }
+
+            const data = await response.json()
+            return { data, success: true }
+        } catch (error: any) {
+            console.error('Support message submission failed:', error.message || error)
+            return {
+                error: error.message || 'Failed to submit support message. Please try again later.',
+                success: false
+            }
+        }
     }
 
     // New endpoints for deals

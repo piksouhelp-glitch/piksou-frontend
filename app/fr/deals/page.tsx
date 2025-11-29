@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Search, Filter, Grid, List, Star, Clock, MapPin, ShoppingBag, ExternalLink } from "lucide-react"
 import { apiService, Deal, Store, Category } from "@/lib/api"
+import { getStoreInitials } from "@/lib/utils"
 import DealModal from "@/components/fr/deal-modal"
 
 export default function AllDealsPageFr() {
@@ -262,11 +263,15 @@ export default function AllDealsPageFr() {
 
                                 {/* Store Info */}
                                 <div className="flex items-center space-x-2 mb-2 px-4">
-                                    <img
+                                    {/* Logos magasins retirés pour raisons légales */}
+                                    {/* <img
                                         src={deal.store.logo}
                                         alt={deal.store.name}
                                         className="w-6 h-6 rounded object-contain bg-white p-1 shadow-sm border border-gray-200"
-                                    />
+                                    /> */}
+                                    <div className="w-6 h-6 rounded bg-gradient-to-br from-sunset-orange to-mango-yellow text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
+                                        {getStoreInitials(deal.store.name)}
+                                    </div>
                                     <span className="text-sm text-gray-600 dark:text-gray-400">{deal.store.name}</span>
                                 </div>
 
@@ -324,11 +329,15 @@ export default function AllDealsPageFr() {
                                     {/* Product Info */}
                                     <div className="flex-1 min-w-0">
                                         <div className="flex items-center space-x-2 mb-2">
-                                            <img
+                                            {/* Logos magasins retirés pour raisons légales */}
+                                            {/* <img
                                                 src={deal.store.logo}
                                                 alt={deal.store.name}
                                                 className="w-5 h-5 rounded object-contain bg-white p-1 shadow-sm border border-gray-200"
-                                            />
+                                            /> */}
+                                            <div className="w-5 h-5 rounded bg-gradient-to-br from-sunset-orange to-mango-yellow text-white text-[10px] font-bold flex items-center justify-center shadow-sm">
+                                                {getStoreInitials(deal.store.name)}
+                                            </div>
                                             <span className="text-sm text-gray-600 dark:text-gray-400">{deal.store.name}</span>
                                             <span className="bg-[#48C774] text-white px-2 py-1 rounded-full text-xs font-semibold">
                                                 {formatDiscountPercentage(deal.discount_percentage)}

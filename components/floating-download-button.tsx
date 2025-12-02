@@ -4,12 +4,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Download, X, Smartphone } from "lucide-react";
 import Image from "next/image";
-import ComingSoonModal from "@/components/coming-soon-modal";
 
 export default function FloatingDownloadButton() {
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -72,7 +70,7 @@ export default function FloatingDownloadButton() {
                 >
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                      Download PiKSou APK
+                      Download PiKSou
                     </h3>
                     <button
                       onClick={() => setIsExpanded(false)}
@@ -85,34 +83,38 @@ export default function FloatingDownloadButton() {
 
                   <div className="space-y-3">
                     <motion.a
-                      href="https://codebase-frontend.amanabiy.tech/downloads/app-release-v1.apk"
+                      href="https://apps.apple.com/gh/app/piksou/id6755356394"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                     >
                       <Image
-                        src="/images/piksou-logo-2.jpg"
-                        alt="Generic Download Button"
+                        src="/images/app-store-badge.svg"
+                        alt="Download on the App Store"
                         width={200}
                         height={60}
                         className="w-full h-auto"
                       />
                     </motion.a>
 
-                    <motion.button
-                      onClick={() => setIsModalOpen(true)}
-                      className="block w-full"
+                    <motion.a
+                      href="https://play.google.com/store/apps/details?id=com.piksou.piksou"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
                       <Image
                         src="/images/google-play-badge.svg"
-                        alt="Get it on Google Play - Coming Soon"
+                        alt="Get it on Google Play"
                         width={200}
                         height={60}
-                        className="w-full h-auto opacity-90 hover:opacity-100"
+                        className="w-full h-auto"
                       />
-                    </motion.button>
+                    </motion.a>
                   </div>
 
                   <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
@@ -202,13 +204,6 @@ export default function FloatingDownloadButton() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Coming Soon Modal */}
-      <ComingSoonModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        language="en"
-      />
     </>
   );
 }

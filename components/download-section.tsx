@@ -23,43 +23,30 @@ export default function DownloadSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-6 mb-8">
-            <button
-              onClick={() => setIsModalOpen(true)}
+            <a
+              href="https://apps.apple.com/gh/app/piksou/id6755356394"
+              target="_blank"
+              rel="noopener noreferrer"
               className="transform hover:scale-105 transition-all duration-300 cursor-pointer"
             >
               <img
                 src="/images/app-store-badge.svg"
-                alt="Download on the App Store - Coming Soon"
+                alt="Download on the App Store"
                 className="h-14 w-auto opacity-90 hover:opacity-100"
               />
-            </button>
+            </a>
 
-            <button
-              onClick={() => setIsModalOpen(true)}
+            <a
+              href="https://play.google.com/store/apps/details?id=com.piksou.piksou"
+              target="_blank"
+              rel="noopener noreferrer"
               className="transform hover:scale-105 transition-all duration-300 cursor-pointer"
             >
               <img
                 src="/images/google-play-badge.svg"
-                alt="Get it on Google Play - Coming Soon"
+                alt="Get it on Google Play"
                 className="h-14 w-auto opacity-90 hover:opacity-100"
               />
-            </button>
-
-            <a
-              href="https://codebase-frontend.amanabiy.tech/downloads/app-release-v1.apk"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group transform hover:scale-105 transition-all duration-300"
-            >
-              <div className="organic-card p-6 flex items-center space-x-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-sugarcane-green to-ocean-blue rounded-2xl flex items-center justify-center shadow-lg">
-                  <span className="text-white text-2xl">⬇</span>
-                </div>
-                <div className="text-left">
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Download APK</p>
-                  <p className="text-xs creole-text">Gratis!</p>
-                </div>
-              </div>
             </a>
           </div>
         </div>

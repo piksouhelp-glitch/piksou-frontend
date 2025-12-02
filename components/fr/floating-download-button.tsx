@@ -82,13 +82,32 @@ export default function FloatingDownloadButtonFr() {
 
                 <div className="space-y-3">
                   <motion.a
-                    href="https://codebase-frontend.amanabiy.tech/downloads/app-release-v1.apk"
+                    href="https://apps.apple.com/gh/app/piksou/id6755356394"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     <Image
-                      src="/images/piksou-logo-2.jpg"
+                      src="/images/app-store-badge.svg"
+                      alt="Télécharger sur l'App Store"
+                      width={200}
+                      height={60}
+                      className="w-full h-auto"
+                    />
+                  </motion.a>
+
+                  <motion.a
+                    href="https://play.google.com/store/apps/details?id=com.piksou.piksou"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Image
+                      src="/images/google-play-badge.svg"
                       alt="Disponible sur Google Play"
                       width={200}
                       height={60}

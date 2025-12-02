@@ -1,12 +1,9 @@
 "use client"
 import { motion } from "framer-motion"
-import { useState } from "react"
 import FadeIn from "@/components/animations/fade-in"
 import MagneticButton from "@/components/micro-interactions/magnetic-button"
-import ComingSoonModal from "@/components/coming-soon-modal"
 
 export default function HeroSectionFr() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
     <section className="relative overflow-hidden">
@@ -42,27 +39,31 @@ export default function HeroSectionFr() {
                   Obtenez l'App Gratuitement
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <button
-                    onClick={() => setIsModalOpen(true)}
+                  <a
+                    href="https://apps.apple.com/gh/app/piksou/id6755356394"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="transform hover:scale-105 transition-all duration-300 cursor-pointer"
                   >
                     <img
                       src="/images/app-store-badge.svg"
-                      alt="Télécharger sur l'App Store - Bientôt disponible"
+                      alt="Télécharger sur l'App Store"
                       className="h-14 w-auto opacity-90 hover:opacity-100"
                     />
-                  </button>
+                  </a>
 
-                  <button
-                    onClick={() => setIsModalOpen(true)}
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.piksou.piksou"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="transform hover:scale-105 transition-all duration-300 cursor-pointer"
                   >
                     <img
                       src="/images/google-play-badge.svg"
-                      alt="Disponible sur Google Play - Bientôt disponible"
+                      alt="Disponible sur Google Play"
                       className="h-14 w-auto opacity-90 hover:opacity-100"
                     />
-                  </button>
+                  </a>
                 </div>
               </div>
 
@@ -154,12 +155,6 @@ export default function HeroSectionFr() {
         </svg>
       </div>
 
-      {/* Coming Soon Modal */}
-      <ComingSoonModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        language="fr"
-      />
     </section>
   )
 }

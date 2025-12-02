@@ -53,7 +53,7 @@ export default function MobileDownloadSheet({ isOpen, onClose }: MobileDownloadS
               {/* Download buttons */}
               <div className="space-y-4">
                 <motion.a
-                  href="https://apps.apple.com/app/idXXXXXXXXX"
+                  href="https://apps.apple.com/gh/app/piksou/id6755356394"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block"
@@ -69,7 +69,7 @@ export default function MobileDownloadSheet({ isOpen, onClose }: MobileDownloadS
                 </motion.a>
 
                 <motion.a
-                  href="https://play.google.com/store/apps/details?id=com.piksou.app"
+                  href="https://play.google.com/store/apps/details?id=com.piksou.piksou"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block"

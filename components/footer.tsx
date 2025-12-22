@@ -28,9 +28,7 @@ export default function Footer() {
               <div className="flex items-start space-x-3">
                 <MapPin size={18} className="text-[#48C774] mt-1" />
                 <div>
-                  <div>26, Petit Trianon, Trianon</div>
-                  <div>Quatre Bornes, Mauritius</div>
-                  <div className="text-sm text-gray-400">72257</div>
+                  <div>Trianon, Quatre Bornes, Mauritius</div>
                 </div>
               </div>
             </div>

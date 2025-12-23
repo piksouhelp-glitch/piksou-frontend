@@ -27,7 +27,7 @@ export default function ContactSection() {
     {
       icon: MapPin,
       title: "Visit Us",
-      content: "Port Louis, Mauritius",
+      content: "Trianon, Quatre Bornes, Mauritius",
       description: "Come say hello at our office",
       href: "#",
       color: "#00BFFF",

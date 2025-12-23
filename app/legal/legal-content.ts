@@ -11,7 +11,7 @@ export const LEGAL_CONTENT = {
 
   company: {
     name: "PikSou Ltd",
-    address: "26, Le Petit Trianon, Trianon, Quatre Bornes, Mauritius",
+    address: "Trianon, Quatre Bornes, Mauritius",
     registrationNumber: "",
     phone: "",
     emails: {
@@ -156,7 +156,7 @@ export const LEGAL_CONTENT = {
             {
               subtitle: "",
               content:
-                "PikSou Ltd, 26, Le Petit Trianon, Trianon, Quatre Bornes, Mauritius. Email: contact@piksou.com.",
+                "PikSou Ltd, Trianon, Quatre Bornes, Mauritius. Email: contact@piksou.com.",
             },
           ],
         },
@@ -292,7 +292,7 @@ export const LEGAL_CONTENT = {
             {
               subtitle: "",
               content:
-                "For questions or partnership discussions, email contact@piksou.com or write to PikSou Ltd, 26, Le Petit Trianon, Trianon, Quatre Bornes, Mauritius.",
+                "For questions or partnership discussions, email contact@piksou.com or write to PikSou Ltd, Trianon, Quatre Bornes, Mauritius.",
             },
           ],
         },

@@ -17,8 +17,9 @@ export default function StructuredData() {
     ],
     address: {
       "@type": "PostalAddress",
+      streetAddress: "Trianon",
       addressCountry: "MU",
-      addressLocality: "Port Louis",
+      addressLocality: "Quatre Bornes",
       addressRegion: "Mauritius",
     },
     contactPoint: {

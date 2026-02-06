@@ -38,15 +38,12 @@ export default function Navbar() {
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="flex items-center">
               <Image
-                src="/images/piksou-logo.jpg"
+                src="/images/pikSou_logo2.png"
                 alt="PiKSou Logo"
-                width={40}
-                height={40}
+                width={110}
+                height={110}
                 className="mr-2"
               />
-              <span className="text-xl font-bold text-gray-900 dark:text-white transition-colors duration-300">
-                PiKSou
-              </span>
             </Link>
           </div>
 

@@ -18,6 +18,11 @@ export default function FAQSectionFr() {
         "Oui, PiKSou est entièrement gratuit à télécharger et à utiliser. Nous croyons que tout le monde devrait avoir accès à des outils qui l'aident à économiser sur l'épicerie.",
     },
     {
+      question: "Comment les offres sont-elles collectées ?",
+      answer:
+        "Notre équipe collecte et vérifie manuellement toutes les offres pour garantir leur exactitude. Nous visitons les supermarchés, consultons leurs sites web et validons chaque offre avant de la publier dans l'application.",
+    },
+    {
       question: "Dois-je créer un compte pour utiliser PiKSou ?",
       answer:
         "Bien que vous puissiez parcourir les offres sans compte, créer un compte gratuit vous permet de sauvegarder vos articles favoris, d'obtenir des recommandations personnalisées et de suivre vos économies au fil du temps.",

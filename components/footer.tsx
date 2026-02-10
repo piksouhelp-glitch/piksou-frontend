@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Instagram, Facebook, MessageCircle, Mail, Phone, MapPin } from "lucide-react"
+import { Mail, Phone, MapPin } from "lucide-react"
 
 const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL
 const mailtoLink = `mailto:${contactEmail}`
@@ -39,31 +39,29 @@ export default function Footer() {
             <h3 className="text-2xl font-bold mb-4">Follow Us</h3>
             <div className="flex space-x-4">
               <a
-                href="https://instagram.com/piksou.mu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#48C774] transition-colors duration-300 p-2 rounded-lg hover:bg-gray-800"
-                aria-label="Instagram"
-              >
-                <Instagram size={24} />
-              </a>
-              <a
-                href="https://facebook.com/piksou.mu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#48C774] transition-colors duration-300 p-2 rounded-lg hover:bg-gray-800"
-                aria-label="Facebook"
-              >
-                <Facebook size={24} />
-              </a>
-              <a
-                href="https://tiktok.com/@piksou.mu"
+                href="https://www.tiktok.com/@.piksou"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[#48C774] transition-colors duration-300 p-2 rounded-lg hover:bg-gray-800"
                 aria-label="TikTok"
               >
-                <MessageCircle size={24} />
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  className="w-6 h-6"
+                  fill="currentColor"
+                >
+                  <path d="M21.5 8.1c-1.7-.1-3.2-.7-4.4-1.8-1.2-1.1-1.9-2.6-2-4.2H11v12.1c0 1.3-1 2.4-2.4 2.4-1.3 0-2.4-1.1-2.4-2.4 0-1.3 1.1-2.4 2.4-2.4.3 0 .6.1.9.2V9.2c-.3-.1-.6-.1-.9-.1-3.1 0-5.6 2.5-5.6 5.6s2.5 5.6 5.6 5.6 5.6-2.5 5.6-5.6V7.9c1.2.9 2.7 1.4 4.4 1.5V8.1z" />
+                </svg>
+              </a>
+              <a
+                href="https://wa.me/23058308566"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#48C774] transition-colors duration-300 p-2 rounded-lg hover:bg-gray-800"
+                aria-label="WhatsApp"
+              >
+                <Phone size={24} />
               </a>
             </div>
             <p className="text-sm text-gray-400 mt-3">
@@ -87,12 +85,6 @@ export default function Footer() {
               <li>
                 <Link href="#faq" className="hover:text-[#48C774] transition-colors duration-300">
                   FAQ
-                </Link>
-              </li>
-              <li>
-                <Link href="https://codebase-frontend.amanabiy.tech/downloads/app-release-v1.apk"
-                  className="hover:text-[#48C774] transition-colors duration-300">
-                  Download APK
                 </Link>
               </li>
               <li>

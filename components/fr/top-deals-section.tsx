@@ -130,7 +130,8 @@ export default function TopDealsSectionFr() {
         return date.toLocaleDateString("fr-FR", {
             month: "short",
             day: "numeric",
-            year: "numeric"
+            year: "numeric",
+            timeZone: "Indian/Mauritius"
         })
     }
 

@@ -76,37 +76,6 @@ export default function MonetizationTransparencyFr() {
                         </div>
                     </motion.div>
 
-                    {/* Trust Indicators */}
-                    <motion.div
-                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                    >
-                        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border border-gray-200 dark:border-gray-700">
-                            <div className="flex items-center mb-4">
-                                <div className="w-10 h-10 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center mr-3">
-                                    <span className="text-green-600 text-lg">✓</span>
-                                </div>
-                                <h4 className="font-bold text-gray-800 dark:text-white">Aucun Frais Caché</h4>
-                            </div>
-                            <p className="text-gray-600 dark:text-gray-300 text-sm">
-                                PiKSou est actuellement gratuit sans frais d'abonnement ou coûts cachés. Les fonctionnalités principales resteront toujours gratuites.
-                            </p>
-                        </div>
-
-                        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border border-gray-200 dark:border-gray-700">
-                            <div className="flex items-center mb-4">
-                                <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/20 rounded-full flex items-center justify-center mr-3">
-                                    <span className="text-blue-600 text-lg">🔒</span>
-                                </div>
-                                <h4 className="font-bold text-gray-800 dark:text-white">Vos Données sont Sécurisées</h4>
-                            </div>
-                            <p className="text-gray-600 dark:text-gray-300 text-sm">
-                                Nous ne partageons que les informations d'offres avec les magasins. Vos données personnelles restent privées.
-                            </p>
-                        </div>
-                    </motion.div>
                 </motion.div>
             </div>
         </section>

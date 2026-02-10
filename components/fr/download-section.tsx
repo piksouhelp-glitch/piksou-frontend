@@ -1,8 +1,4 @@
 "use client"
-import { motion } from "framer-motion"
-import FadeIn from "@/components/animations/fade-in"
-import ScaleIn from "@/components/animations/scale-in"
-import MagneticButton from "@/components/micro-interactions/magnetic-button"
 
 export default function DownloadSectionFr() {
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X, Globe } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,6 +12,7 @@ import AnimatedIcon from "@/components/micro-interactions/animated-icon";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const menuItems = [
     { href: "/#features", label: "Features" },
@@ -25,6 +26,14 @@ export default function Navbar() {
     { code: "en", name: "English", href: "/" },
     { code: "fr", name: "Français", href: "/fr" },
   ];
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return <div className="h-16 bg-white/90 dark:bg-gray-900/90" />;
+  }
 
   return (
     <motion.nav

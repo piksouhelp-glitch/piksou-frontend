@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X, Globe } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,6 +12,7 @@ import AnimatedIcon from "@/components/micro-interactions/animated-icon";
 export default function NavbarFr() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const menuItems = [
     { href: "/fr#features", label: "Fonctionnalités" },
@@ -22,9 +23,17 @@ export default function NavbarFr() {
   ];
 
   const languages = [
-    { code: "fr", name: "Français", href: "/fr" },
     { code: "en", name: "English", href: "/" },
+    { code: "fr", name: "Français", href: "/fr" },
   ];
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return <div className="h-16 bg-white/90 dark:bg-gray-900/90" />;
+  }
 
   return (
     <motion.nav
@@ -152,32 +161,6 @@ export default function NavbarFr() {
         </div>
       </div>
 
-      {/* Mobile language menu */}
-      <AnimatePresence>
-        {isLangMenuOpen && (
-          <motion.div
-            className="md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm transition-colors duration-300 border-t border-gray-200 dark:border-gray-700"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          >
-            <div className="px-2 py-2 space-y-1">
-              {languages.map((lang) => (
-                <Link
-                  key={lang.code}
-                  href={lang.href}
-                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-[#48C774] dark:hover:text-[#48C774] hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300"
-                  onClick={() => setIsLangMenuOpen(false)}
-                >
-                  {lang.name}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Mobile menu */}
       <AnimatePresence>
         {isMenuOpen && (
@@ -204,6 +187,32 @@ export default function NavbarFr() {
                     {item.label}
                   </Link>
                 </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Mobile language menu */}
+      <AnimatePresence>
+        {isLangMenuOpen && (
+          <motion.div
+            className="md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm transition-colors duration-300 border-t border-gray-200 dark:border-gray-700"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <div className="px-2 py-2 space-y-1">
+              {languages.map((lang) => (
+                <Link
+                  key={lang.code}
+                  href={lang.href}
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-[#48C774] dark:hover:text-[#48C774] hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300"
+                  onClick={() => setIsLangMenuOpen(false)}
+                >
+                  {lang.name}
+                </Link>
               ))}
             </div>
           </motion.div>

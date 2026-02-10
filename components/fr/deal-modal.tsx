@@ -28,7 +28,8 @@ export default function DealModal({ deal, isOpen, onClose }: DealModalProps) {
             weekday: "long",
             year: "numeric",
             month: "long",
-            day: "numeric"
+            day: "numeric",
+            timeZone: "Indian/Mauritius"
         })
     }
 

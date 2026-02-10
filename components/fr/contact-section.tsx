@@ -27,7 +27,7 @@ export default function ContactSectionFr() {
     {
       icon: MapPin,
       title: "Visitez-nous",
-      content: "Port-Louis, Maurice",
+      content: "Trianon, Quatre Bornes, Mauritius",
       description: "Venez nous dire bonjour à notre bureau",
       href: "#",
       color: "#00BFFF",
@@ -62,7 +62,7 @@ export default function ContactSectionFr() {
           {/* Contact Information */}
           <div className="space-y-8">
             <FadeIn delay={0.2}>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300 hidden">
                 Informations de Contact
               </h3>
             </FadeIn>

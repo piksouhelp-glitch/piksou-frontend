@@ -21,8 +21,8 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3">
                 <Phone size={18} className="text-[#48C774]" />
-                <a href="tel:+23055090801" className="hover:text-[#48C774] transition-colors duration-300">
-                  +230 55090801
+                <a href="tel:+23058308566" className="hover:text-[#48C774] transition-colors duration-300">
+                  +230 5830 8566
                 </a>
               </div>
               <div className="flex items-start space-x-3">
@@ -39,29 +39,31 @@ export default function Footer() {
             <h3 className="text-2xl font-bold mb-4">Follow Us</h3>
             <div className="flex space-x-4">
               <a
+                href="https://www.facebook.com/profile.php?id=61584774459115"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity duration-300 p-2 rounded-lg hover:bg-gray-800"
+                aria-label="Facebook"
+              >
+                <img src="/Icons/facebook-color.svg" alt="" className="w-6 h-6" aria-hidden="true" />
+              </a>
+              <a
                 href="https://www.tiktok.com/@.piksou"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#48C774] transition-colors duration-300 p-2 rounded-lg hover:bg-gray-800"
+                className="hover:opacity-80 transition-opacity duration-300 p-2 rounded-lg hover:bg-gray-800"
                 aria-label="TikTok"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                  className="w-6 h-6"
-                  fill="currentColor"
-                >
-                  <path d="M21.5 8.1c-1.7-.1-3.2-.7-4.4-1.8-1.2-1.1-1.9-2.6-2-4.2H11v12.1c0 1.3-1 2.4-2.4 2.4-1.3 0-2.4-1.1-2.4-2.4 0-1.3 1.1-2.4 2.4-2.4.3 0 .6.1.9.2V9.2c-.3-.1-.6-.1-.9-.1-3.1 0-5.6 2.5-5.6 5.6s2.5 5.6 5.6 5.6 5.6-2.5 5.6-5.6V7.9c1.2.9 2.7 1.4 4.4 1.5V8.1z" />
-                </svg>
+                <img src="/Icons/tiktok2.png" alt="" className="w-6 h-6" aria-hidden="true" />
               </a>
               <a
                 href="https://wa.me/23058308566"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#48C774] transition-colors duration-300 p-2 rounded-lg hover:bg-gray-800"
+                className="hover:opacity-80 transition-opacity duration-300 p-2 rounded-lg hover:bg-gray-800"
                 aria-label="WhatsApp"
               >
-                <Phone size={24} />
+                <img src="/Icons/whatsapp-color.svg" alt="" className="w-6 h-6" aria-hidden="true" />
               </a>
             </div>
             <p className="text-sm text-gray-400 mt-3">

@@ -269,9 +269,9 @@ export default function TopDealsSectionFr() {
                                             </div>
 
                                             <div className="px-4">
-                                                <h3 className="font-bold text-gray-800 dark:text-white mb-2 text-base line-clamp-2">
-                                                    {productName}
-                                                </h3>
+                                            <h3 className="font-sans font-bold text-gray-800 dark:text-white mb-2 text-base line-clamp-2">
+                                                {productName}
+                                            </h3>
                                             </div>
 
                                             <div className="px-4 mb-4">
@@ -350,4 +350,3 @@ export default function TopDealsSectionFr() {
         </section>
     )
 }
-

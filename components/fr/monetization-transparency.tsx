@@ -44,11 +44,11 @@ export default function MonetizationTransparencyFr() {
                 >
                     {/* Header */}
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                            Comment <span className="text-mango-yellow">PiKSou</span> Vous Fait Économiser ?
+                        <h2 className="text-3xl md:text-4xl font-bold text-palm-shadow dark:text-white mb-4">
+                            Comment <span className="text-sugarcane-green">PiKSou</span> Vous Fait Économiser ?
                         </h2>
                         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                            PiKSou est entièrement gratuit pour tous les utilisateurs. Voici comment tout le monde profite de notre plateforme.
+                            Actuellement, PiKSou est actuellement complètement gratuit pour tous les utilisateurs. Nous nous concentrons sur la construction d'une communauté d'acheteurs intelligents et vous aider à économiser de l'argent. En grandissant, nous pourrions introduire des fonctionnalités premium, mais la fonctionnalité principale de recherche d'offres restera toujours gratuite.
                         </p>
                     </div>
 
@@ -78,7 +78,7 @@ export default function MonetizationTransparencyFr() {
                                     </span>
 
                                     {/* Title */}
-                                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                                    <h3 className="text-2xl font-bold text-palm-shadow dark:text-white mb-2">
                                         {step.title}
                                     </h3>
 

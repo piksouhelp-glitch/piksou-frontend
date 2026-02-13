@@ -288,7 +288,7 @@ export default function TopDealsSection() {
 
                                         {/* Product Name */}
                                         <div className="px-4">
-                                            <h3 className="font-bold text-gray-800 dark:text-white mb-2 text-base line-clamp-2">
+                                            <h3 className="font-sans font-bold text-gray-800 dark:text-white mb-2 text-base line-clamp-2">
                                                 {deal.product.name}
                                             </h3>
                                         </div>

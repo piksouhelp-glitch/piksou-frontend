@@ -13,10 +13,24 @@ export default function NavbarFr() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollThreshold = window.innerHeight * 0.4;
+      setIsScrolled(window.scrollY > scrollThreshold);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial scroll position
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const menuItems = [
     { href: "/fr#features", label: "Fonctionnalités" },
     { href: "/fr#how-it-works", label: "Comment ça marche" },
+    { href: "/fr/partners", label: "Partenaires" },
     { href: "/fr#faq", label: "FAQ" },
     { href: "/fr#download", label: "Télécharger" },
     { href: "/fr#contact", label: "Contact" },
@@ -37,7 +51,11 @@ export default function NavbarFr() {
 
   return (
     <motion.nav
-      className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm sticky top-0 z-50 shadow-sm transition-colors duration-300"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-sm"
+          : "bg-transparent"
+      }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}

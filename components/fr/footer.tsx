@@ -87,6 +87,16 @@ export default function FooterFr() {
                 </Link>
               </li>
               <li>
+                <Link href="/fr/partners" className="hover:text-[#48C774] transition-colors duration-300">
+                  Partenaires
+                </Link>
+              </li>
+              <li>
+                <Link href="/fr#download" className="hover:text-[#48C774] transition-colors duration-300">
+                  Télécharger
+                </Link>
+              </li>
+              <li>
                 <Link href="/" className="hover:text-[#48C774] transition-colors duration-300">
                   English
                 </Link>

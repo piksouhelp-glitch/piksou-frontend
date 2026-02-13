@@ -257,7 +257,7 @@ export default function TopDealsSection() {
                                         className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 group h-full"
                                     >
                                         {/* Product Image */}
-                                        <div className="relative w-full h-24 mb-4 overflow-hidden">
+                                        <div className="relative w-full h-40 mb-4 overflow-hidden">
                                             <img
                                                 src={deal.product.image}
                                                 alt={deal.product.name}
@@ -288,7 +288,7 @@ export default function TopDealsSection() {
 
                                         {/* Product Name */}
                                         <div className="px-4">
-                                            <h3 className="font-bold text-gray-800 dark:text-white mb-2 text-sm line-clamp-2">
+                                            <h3 className="font-bold text-gray-800 dark:text-white mb-2 text-base line-clamp-2">
                                                 {deal.product.name}
                                             </h3>
                                         </div>

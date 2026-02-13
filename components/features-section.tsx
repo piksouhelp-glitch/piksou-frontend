@@ -12,7 +12,6 @@ export default function FeaturesSection() {
       title: "Smart Search & Compare",
       description: "Find the best deals across all supermarkets in Mauritius with our intelligent search",
       creole: "Serser ek konpare malin",
-      emoji: "🔍",
       screenshot: "/images/app-screenshot-1.jpg",
       color: "from-sugarcane-green to-emerald-400",
     },
@@ -21,7 +20,6 @@ export default function FeaturesSection() {
       title: "Bookmark Your Favorites",
       description: "Save deals you love and never miss out on your favorite products",
       creole: "Gard to favori",
-      emoji: "🔖",
       screenshot: "/images/app-screenshot-2.jpg",
       color: "from-mango-yellow to-amber-400",
     },
@@ -30,7 +28,6 @@ export default function FeaturesSection() {
       title: "Track Your Savings",
       description: "See exactly how much you're saving with every purchase",
       creole: "Gete to ekonomi",
-      emoji: "💰",
       screenshot: "/images/app-screenshot-3.jpg",
       color: "from-ocean-blue to-sky-400",
     },
@@ -39,7 +36,6 @@ export default function FeaturesSection() {
       title: "Smart Filtering",
       description: "Filter deals by category, store, or price range to find exactly what you need",
       creole: "Filtre malin",
-      emoji: "🎯",
       screenshot: "/images/app-screenshot-2.jpg",
       color: "from-purple-500 to-indigo-400",
     },
@@ -82,8 +78,10 @@ export default function FeaturesSection() {
                         </div>
                       </div>
                       {/* Floating Icon */}
-                      <div className={`absolute -top-3 -right-3 w-14 h-14 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                        <span className="text-xl">{feature.emoji}</span>
+                      <div
+                        className={`absolute -top-3 -right-3 w-14 h-14 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                      >
+                        <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
                       </div>
                     </div>
                   </div>
@@ -91,10 +89,11 @@ export default function FeaturesSection() {
                   {/* Content */}
                   <div className="md:w-1/2 p-6 flex flex-col justify-center">
                     <div className="mb-4">
-                      <h3 className="text-xl font-bold text-palm-shadow dark:text-white mb-2 handwritten group-hover:text-sugarcane-green transition-colors duration-300">
+                      <h3 className="text-3xl md:text-4xl font-bold text-palm-shadow dark:text-white mb-2 handwritten group-hover:text-sugarcane-green transition-colors duration-300">
                         {feature.title}
                       </h3>
-                      <p className="text-base creole-text mb-3">{feature.creole}</p>
+                      <p className="text-base md:text-xl
+                       creole-text mb-3">{feature.creole}</p>
                     </div>
                     <p className="text-gray-600 dark:text-gray-400 transition-colors duration-300 group-hover:text-gray-700 dark:group-hover:text-gray-300 text-base leading-relaxed">
                       {feature.description}
@@ -112,20 +111,18 @@ export default function FeaturesSection() {
           ))}
         </StaggerContainer>
 
-        <FadeIn delay={0.8}>
-          <div className="mt-16 text-center">
-            <div className="organic-card p-8 bg-gradient-to-r from-sugarcane-green/10 to-ocean-blue/10">
-              <h3 className="text-3xl handwritten text-palm-shadow dark:text-sugarcane-green mb-4">
-                Ready to start saving?
-                <span className="creole-text"> Ale nou koumans! </span>
-              </h3>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
-                Join thousands of Mauritians who are already saving money with PikSou. It's free, it's easy, and it's
-                made right here in paradise! 🏝️
-              </p>
-            </div>
+        <div className="mt-16 text-center">
+          <div className="rounded-2xl p-10 bg-white border-2 border-emerald-500 shadow-lg">
+            <h3 className="text-3xl md:text-4xl font-bold text-palm-shadow mb-4">
+              Ready to start saving?
+              <span className="block text-emerald-600 text-xl md:text-2xl mt-2 font-medium"> Ale nou koumans! </span>
+            </h3>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Join thousands of Mauritians who are already saving money with PiKSou. It's free, it's easy, and it's
+              made right here in paradise!
+            </p>
           </div>
-        </FadeIn>
+        </div>
       </div>
     </section>
   )

@@ -81,7 +81,7 @@ export default function FAQSectionFr() {
 
   return (
     <section className="section-padding bg-white dark:bg-gray-900 transition-colors duration-300" id="faq">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 transition-colors duration-300">
@@ -102,7 +102,7 @@ export default function FAQSectionFr() {
                   value={`item-${index}`}
                   className="border-b border-gray-200 dark:border-gray-700 transition-colors duration-300"
                 >
-                  <AccordionTrigger className="text-left font-semibold text-gray-900 dark:text-white py-4 hover:text-[#48C774] dark:hover:text-[#48C774] transition-colors duration-300">
+                  <AccordionTrigger className="text-left font-sans font-bold text-lg text-gray-900 dark:text-white py-4 hover:text-[#48C774] dark:hover:text-[#48C774] transition-colors duration-300">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-gray-600 dark:text-gray-400 pb-4 pt-1 transition-colors duration-300">

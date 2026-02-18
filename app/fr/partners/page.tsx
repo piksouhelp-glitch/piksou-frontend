@@ -1,7 +1,8 @@
-import PartnersPageHero from "@/components/partners-page-hero"
-import PartnersPagePillars from "@/components/partners-page-pillars"
-import PartnersPageBenefits from "@/components/partners-page-benefits"
-import ContactSectionFr from "@/components/fr/contact-section"
+import PartnersPageHero from "@/components/partners/hero"
+import PartnersPagePillars from "@/components/partners/pillars"
+import PartnersPageLogos from "@/components/partners/partners-logos"
+import PartnersPageWhy from "@/components/partners/why"
+import PartnersPageForm from "@/components/partners/form"
 import Navbar from "@/components/fr/navbar"
 import Footer from "@/components/fr/footer"
 import ScrollToTop from "@/components/scroll-to-top"
@@ -12,8 +13,9 @@ export default function PartnersPageFr() {
       <Navbar />
       <PartnersPageHero locale="fr" />
       <PartnersPagePillars locale="fr" />
-      <PartnersPageBenefits locale="fr" />
-      <ContactSectionFr />
+      <PartnersPageLogos locale="fr" />
+      <PartnersPageWhy locale="fr" />
+      <PartnersPageForm locale="fr" />
       <Footer />
       <ScrollToTop />
     </main>

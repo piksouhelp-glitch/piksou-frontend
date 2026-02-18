@@ -17,8 +17,8 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollThreshold = window.innerHeight * 0.4;
-      setIsScrolled(window.scrollY > scrollThreshold);
+      // Trigger after just 50px of scroll for faster response
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -51,8 +51,8 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-50
+         ${isScrolled
           ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-sm"
           : "bg-transparent"
       }`}

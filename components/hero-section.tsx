@@ -23,14 +23,14 @@ export default function HeroSection() {
                   whileHover={{ rotate: 2, scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300, damping: 10 }}
                 >
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-palm-shadow dark:text-sugarcane-green leading-tight">
-                    Never Overpay for Groceries Again.
+                  <h1 className="max-w-lg text-5xl md:text-6xl lg:text-7xl font-bold text-palm-shadow dark:text-sugarcane-green leading-tight">
+                    Never Overpay Again.
                   </h1>
                 </motion.div>
               </FadeIn>
 
-              <p className="text-xl md:text-2xl text-palm-shadow dark:text-gray-300 font-medium">
-                Compare supermarket deals in Mauritius and save every week.
+              <p className="max-w-lg text-xl md:text-2xl text-palm-shadow dark:text-gray-300 font-medium">
+                Compare deals in Mauritius and save every week.
               </p>
 
               <div className="space-y-4">

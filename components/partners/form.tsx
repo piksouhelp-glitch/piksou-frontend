@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, type Variants } from "framer-motion"
 import { Send, CheckCircle, AlertCircle, User, Mail, MessageSquare, Phone, Building2 } from "lucide-react"
 import RippleButton from "@/components/micro-interactions/ripple-button"
 import AnimatedIcon from "@/components/micro-interactions/animated-icon"
@@ -32,8 +32,9 @@ interface PartnersPageFormProps {
 
 const content = {
   en: {
-    title: "Ready to Get Started?",
-    subtitle: "Fill out the form below and our partnership team will reach out within 48 hours.",
+    title: "Let's",
+    titleHighlight: "Get Started!",
+    subtitle: "Fill out the form and our partnership team will reach out to you in the next 48 hours",
     labels: {
       storeName: "Store / Business Name *",
       contactName: "Contact Person Name *",
@@ -68,8 +69,9 @@ const content = {
     messagePrefix: "[Partner Inquiry from",
   },
   fr: {
-    title: "Prêt à Commencer ?",
-    subtitle: "Remplissez le formulaire ci-dessous et notre équipe partenariats vous contactera sous 48 heures.",
+    title: "C'est",
+    titleHighlight: "Parti!",
+    subtitle: "Remplissez le formulaire et notre équipe partenariat vous contactera dans les prochaines 48 heures",
     labels: {
       storeName: "Nom du Magasin / Entreprise *",
       contactName: "Nom du Contact *",
@@ -229,12 +231,12 @@ export default function PartnersPageForm({ locale = "en" }: PartnersPageFormProp
     }
   }
 
-  const inputVariants = {
+  const inputVariants: Variants = {
     focused: { scale: 1.02, transition: { type: "spring", stiffness: 300, damping: 10 } },
     unfocused: { scale: 1, transition: { type: "spring", stiffness: 300, damping: 10 } },
   }
 
-  const errorVariants = {
+  const errorVariants: Variants = {
     hidden: { opacity: 0, y: -10, height: 0 },
     visible: {
       opacity: 1,
@@ -249,15 +251,15 @@ export default function PartnersPageForm({ locale = "en" }: PartnersPageFormProp
     bg-gray-50 dark:bg-gray-700
     text-gray-900 dark:text-white
     placeholder-gray-500 dark:placeholder-gray-400
-    focus:outline-none focus:ring-2 focus:ring-[#48C774] focus:border-transparent
+    focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent
     transition-all duration-200
     ${errors[fieldName] ? "border-red-500" : "border-gray-300 dark:border-gray-600"}
   `
 
   if (isSubmitted) {
     return (
-      <section className="section-padding bg-gray-50 dark:bg-gray-800 transition-colors duration-300" id="partner-form">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-24 bg-gray-50 dark:bg-gray-800 transition-colors duration-300" id="contact-form">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -268,7 +270,7 @@ export default function PartnersPageForm({ locale = "en" }: PartnersPageFormProp
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 300, damping: 10 }}
             >
-              <CheckCircle size={64} className="text-[#48C774] mx-auto mb-4" />
+              <CheckCircle size={64} className="text-emerald-600 mx-auto mb-4" />
             </motion.div>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{t.successTitle}</h3>
             <p className="text-gray-600 dark:text-gray-400 mb-6">{t.successMessage}</p>
@@ -282,19 +284,23 @@ export default function PartnersPageForm({ locale = "en" }: PartnersPageFormProp
   }
 
   return (
-    <section className="section-padding bg-gray-50 dark:bg-gray-800 transition-colors duration-300" id="partner-form">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FadeIn>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-palm-shadow dark:text-sugarcane-green mb-4 handwritten">
-              {t.title}
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400">{t.subtitle}</p>
-          </div>
-        </FadeIn>
+    <section className="py-16 md:py-24 bg-gray-50 dark:bg-gray-800 transition-colors duration-300" id="contact-form">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+          {/* Left Side - Title */}
+          <FadeIn>
+            <div className="md:sticky md:top-32">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                {t.title}{" "}
+                <span className="handwritten text-sugarcane-green dark:text-emerald-400">{t.titleHighlight}</span>
+              </h2>
+              <p className="text-gray-600 dark:text-gray-400">{t.subtitle}</p>
+            </div>
+          </FadeIn>
 
-        <FadeIn delay={0.2}>
-          <motion.form
+          {/* Right Side - Form */}
+          <FadeIn delay={0.2}>
+            <motion.form
             onSubmit={handleSubmit}
             className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-xl dark:shadow-gray-900/20 transition-colors duration-300"
             initial={{ opacity: 0, y: 20 }}
@@ -450,7 +456,7 @@ export default function PartnersPageForm({ locale = "en" }: PartnersPageFormProp
                     bg-gray-50 dark:bg-gray-700
                     text-gray-900 dark:text-white
                     placeholder-gray-500 dark:placeholder-gray-400
-                    focus:outline-none focus:ring-2 focus:ring-[#48C774] focus:border-transparent
+                    focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent
                     transition-all duration-200
                     ${errors.message ? "border-red-500" : "border-gray-300 dark:border-gray-600"}
                   `}
@@ -511,8 +517,9 @@ export default function PartnersPageForm({ locale = "en" }: PartnersPageFormProp
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600 dark:text-gray-400">{t.footer}</p>
             </div>
-          </motion.form>
-        </FadeIn>
+            </motion.form>
+          </FadeIn>
+        </div>
       </div>
     </section>
   )

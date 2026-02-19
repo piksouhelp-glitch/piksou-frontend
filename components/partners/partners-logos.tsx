@@ -18,9 +18,9 @@ const content = {
   },
   fr: {
     label: "Nos Partenaires",
-    title: "Fiers de travailler avec les",
-    titleHighlight: "meilleurs",
-    titleEnd: "détaillants de Maurice",
+    title: "Fier de travailler avec les commerces",
+    titleHighlight: "les plus solides",
+    titleEnd: "",
     description:
       "Nous collaborons avec des marques de confiance pour aider les clients à découvrir les meilleures offres sur l'île.",
   },

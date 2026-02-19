@@ -10,7 +10,9 @@ interface HeroProps {
 
 const content = {
   en: {
-    tagline: "Printing brochures and catalogues with your promotions without knowing your Return on Investment (ROI)?",
+    taglineStart: "Tired of printing brochures and catalogues with your promotions",
+    taglineHighlight: "without",
+    taglineEnd: "knowing your Return on Investment (ROI)?",
     title: "Partner with",
     titleHighlight: "PikSou",
     subtitleBold1: "Increase visibility, get detailed insights & analytics",
@@ -25,13 +27,15 @@ const content = {
     ],
   },
   fr: {
-    tagline: "Imprimer des brochures et catalogues avec vos promotions sans connaître votre Retour sur Investissement (ROI) ?",
-    title: "Devenez partenaire",
+    taglineStart: "Vous imprimez encore des brochures et des catalogues",
+    taglineHighlight: "sans",
+    taglineEnd: "vraiment savoir si ça donne un vrai retour sur investissement?",
+    title: "Devenez partenaire de",
     titleHighlight: "PikSou",
-    subtitleBold1: "Augmentez votre visibilité, obtenez des insights détaillés & analytics",
-    subtitleNormal1: "et même",
-    subtitleBold2: "des commandes directes",
-    subtitleNormal2: "pour augmenter significativement le trafic et les revenus.",
+    subtitleBold1: "Augmentez votre visibilité et le passage en magasin.",
+    subtitleNormal1: "Obtenez des données claires sur ce qui attire vraiment vos clients.",
+    subtitleBold2: "Bientôt, vous pourrez aussi proposer des commandes directes via la plateforme.",
+    subtitleNormal2: "",
     cta: "Contactez-nous",
     stats: [
       { value: "15", suffix: "+", label: "Magasins Listés", icon: "/images/partners/hero/stores-logo.svg" },
@@ -108,7 +112,9 @@ export default function Hero({ locale = "en" }: HeroProps) {
           <FadeIn>
             {/* Tagline */}
             <p className="font-sans text-base md:text-xl text-gray-500 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-              {t.tagline}
+              {t.taglineStart}{" "}
+              <span className="text-sugarcane-green dark:text-emerald-400">{t.taglineHighlight}</span>{" "}
+              {t.taglineEnd}
             </p>
 
             {/* Main Title */}
@@ -122,7 +128,7 @@ export default function Hero({ locale = "en" }: HeroProps) {
                   alt=""
                   width={32}
                   height={32}
-                  className="absolute -top-4 -right-6 md:-top-5 md:-right-8 w-6 h-6 md:w-8 md:h-8"
+                  className="absolute -top-2 -right-3 md:-top-3 md:-right-4 w-6 h-6 md:w-8 md:h-8"
                   aria-hidden="true"
                 />
               </span>
@@ -147,7 +153,7 @@ export default function Hero({ locale = "en" }: HeroProps) {
 
           {/* Stats */}
           <FadeIn delay={0.3}>
-            <div className="flex flex-wrap justify-center gap-8 md:gap-16 mt-16">
+            <div className="mt-16 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start justify-items-center">
               {t.stats.map((stat, index) => (
                 <div key={index} className="text-center">
                   <div className="flex items-center justify-center mb-3">

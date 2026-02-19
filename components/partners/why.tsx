@@ -53,11 +53,11 @@ const content = {
   fr: {
     title: "Pourquoi",
     titleHighlight: "Partenaire?",
-    description: "est une plateforme connectant les détaillants à",
+    description: "est une plateforme qui met en relation les commerces avec",
     descriptionBold: "des milliers",
-    descriptionMid: "de consommateurs motivés directement à",
-    descriptionHighlight: "Maurice",
-    descriptionEnd: "redéfinissant comment les détaillants approchent leurs utilisateurs.",
+    descriptionMid: "de consommateurs. Piksou a transformé le marché en",
+    descriptionHighlight: "redéfinissant",
+    descriptionEnd: "la façon dont les enseignes communiquent avec leurs consommateurs.",
     testimonials: [
       {
         quote: "De nouveaux clients arrivent en sachant déjà exactement ce qu'ils veulent. Cela a augmenté notre compétitivité sur le marché.",

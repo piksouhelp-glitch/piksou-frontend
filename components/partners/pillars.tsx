@@ -45,11 +45,11 @@ const contentEn = {
 
 const contentFr = {
   sectionLabel: "Ce Que Nous Offrons",
-  sectionTitle: "Devenez partenaire",
+  sectionTitle: "Devenez partenaire de",
   sectionTitleHighlight: "PikSou",
-  sectionTitleEnd: "et",
-  sectionTitleUnderline: "débloquez",
-  sectionSubtitle: "des outils puissants pour développer votre activité",
+  sectionTitleEnd: "pour",
+  sectionTitleUnderline: "développer",
+  sectionSubtitle: "votre activité commerciale",
   pillars: [
     {
       iconImage: "/images/partners/what-we-offer/visiblity-icon.png",
@@ -69,7 +69,7 @@ const contentFr = {
       iconImage: "/images/partners/what-we-offer/push-notification-icon.png",
       title: "Commandes Directes",
       description:
-        "Les utilisateurs veulent commander depuis l'app. Nous transmettons les commandes à votre boutique.",
+        "Selon la demande des clients, on pourra bientôt envoyer des commandes directement vers votre magasin.",
       image: "/images/partners/what-we-offer/push-notification.png",
     },
   ] as Pillar[],
@@ -173,12 +173,14 @@ export default function Pillars({ locale = "en" }: PillarsProps) {
 
               {/* Image/Mockup - Middle one is larger */}
               <div className="flex-1 flex items-end justify-center">
-                <div className={`relative w-full ${index === 1 ? 'h-72 md:h-96 lg:h-[28rem]' : 'h-64 md:h-80 lg:h-96'}`}>
+                <div
+                  className={`relative ${index === 1 ? "w-full overflow-hidden h-[19rem] md:h-[25rem] lg:h-[30rem] -translate-y-3 md:-translate-y-7 lg:-translate-y-8" : "w-[92%] md:w-[90%] h-64 md:h-80 lg:h-96"}`}
+                >
                   <Image
                     src={pillar.image}
                     alt={pillar.title}
                     fill
-                    className="object-contain"
+                    className={index === 1 ? "object-contain scale-[1.1] md:scale-[1.15] lg:scale-[1.18] translate-y-4 md:translate-y-5" : "object-contain"}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
                   />
                 </div>

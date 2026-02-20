@@ -1,6 +1,5 @@
 "use client"
 
-import FadeIn from "@/components/animations/fade-in"
 import Link from "next/link"
 import Image from "next/image"
 
@@ -54,7 +53,7 @@ export default function Hero({ locale = "en" }: HeroProps) {
       <section className="relative bg-white dark:bg-gray-900 pt-32 pb-16 md:pt-40 md:pb-24 transition-colors duration-300 overflow-hidden">
         {/* Decorative dollar sign images */}
         {/* Top left - attached to edge */}
-        <div className="absolute top-16 left-0 w-24 h-24 md:w-40 md:h-40 pointer-events-none opacity-80">
+        <div className="absolute top-16 left-0 w-44 h-24 md:w-50 md:h-40 pointer-events-none opacity-80">
           <Image
             src="/images/partners/hero/hero-decoration-2.svg"
             alt=""
@@ -76,7 +75,8 @@ export default function Hero({ locale = "en" }: HeroProps) {
         </div>
 
         {/* Middle right - attached to edge */}
-        <div className="absolute top-1/3 right-0 w-20 h-20 md:w-32 md:h-32 pointer-events-none opacity-80">
+        <div className="absolute top-1/3 right-0 w-20 h-20 md:w-32 md:h-32 pointer-events-none opacity-90
+        ">
           <Image
             src="/images/partners/hero/hero-decoration-4.svg"
             alt=""
@@ -98,9 +98,9 @@ export default function Hero({ locale = "en" }: HeroProps) {
         </div>
 
         {/* Bottom right - attached to edge */}
-        <div className="absolute bottom-16 right-0 w-24 h-24 md:w-36 md:h-36 pointer-events-none opacity-75">
+        <div className="absolute bottom-16 right-0 w-24 h-24 md:w-36 md:h-36 pointer-events-none opacity-90">
           <Image
-            src="/images/partners/hero/hero-decoration-1.svg"
+            src="/images/partners/hero/hero-decoration-4.svg"
             alt=""
             fill
             className="object-contain blur-[2px]"
@@ -109,73 +109,69 @@ export default function Hero({ locale = "en" }: HeroProps) {
         </div>
 
         <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <FadeIn>
-            {/* Tagline */}
-            <p className="font-sans text-base md:text-xl text-gray-500 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-              {t.taglineStart}{" "}
-              <span className="text-sugarcane-green dark:text-emerald-400">{t.taglineHighlight}</span>{" "}
-              {t.taglineEnd}
-            </p>
+          {/* Tagline */}
+          <p className="font-sans text-base md:text-xl text-gray-500 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+            {t.taglineStart}{" "}
+            <span className="text-sugarcane-green dark:text-emerald-400">{t.taglineHighlight}</span>{" "}
+            {t.taglineEnd}
+          </p>
 
-            {/* Main Title */}
-            <h1 className="font-sans text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-8">
-              {t.title}{" "}
-              <span className="relative inline-block">
-                <span className="handwritten text-sugarcane-green dark:text-emerald-400">{t.titleHighlight}</span>
-                {/* Icon on top right of PikSou */}
-                <Image
-                  src="/images/partners/hero/piksou-decoration.png"
-                  alt=""
-                  width={32}
-                  height={32}
-                  className="absolute -top-2 -right-3 md:-top-3 md:-right-4 w-6 h-6 md:w-8 md:h-8"
-                  aria-hidden="true"
-                />
-              </span>
-            </h1>
+          {/* Main Title */}
+          <h1 className="font-sans text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-8">
+            {t.title}{" "}
+            <span className="relative inline-block">
+              <span className="handwritten text-sugarcane-green dark:text-emerald-400">{t.titleHighlight}</span>
+              {/* Icon on top right of PikSou */}
+              <Image
+                src="/images/partners/hero/piksou-decoration.png"
+                alt=""
+                width={32}
+                height={32}
+                className="absolute -top-2 -right-3 md:-top-3 md:-right-4 w-6 h-6 md:w-8 md:h-8"
+                aria-hidden="true"
+              />
+            </span>
+          </h1>
 
-            {/* Subtitle */}
-            <p className="font-sans text-xl md:text-2xl text-black dark:text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-              <span className="font-bold text-black dark:text-white">{t.subtitleBold1}</span>{" "}
-              {t.subtitleNormal1}{" "}
-              <span className="font-bold text-black dark:text-white">{t.subtitleBold2}</span>{" "}
-              {t.subtitleNormal2}
-            </p>
+          {/* Subtitle */}
+          <p className="font-sans text-xl md:text-2xl text-black dark:text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+            <span className="font-bold text-black dark:text-white">{t.subtitleBold1}</span>{" "}
+            {t.subtitleNormal1}{" "}
+            <span className="font-bold text-black dark:text-white">{t.subtitleBold2}</span>{" "}
+            {t.subtitleNormal2}
+          </p>
 
-            {/* CTA Button */}
-            <Link
-              href="#contact-form"
-              className="min-w-sm inline-block font-handwritten text-xl bg-sugarcane-green hover:bg-emerald-700 text-white font-semibold px-8 py-3 rounded-full transition-colors duration-300 shadow-lg hover:shadow-xl"
-            >
-              {t.cta}
-            </Link>
-          </FadeIn>
+          {/* CTA Button */}
+          <Link
+            href="#contact-form"
+            className="min-w-sm inline-block font-handwritten text-xl bg-sugarcane-green hover:bg-emerald-700 text-white font-semibold px-8 py-3 rounded-full transition-colors duration-300 shadow-lg hover:shadow-xl"
+          >
+            {t.cta}
+          </Link>
 
           {/* Stats */}
-          <FadeIn delay={0.3}>
-            <div className="mt-16 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start justify-items-center">
-              {t.stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="flex items-center justify-center mb-3">
-                    <Image
-                      className="w-12 h-12 md:w-16 md:h-16"
-                      src={stat.icon}
-                      alt={stat.suffix}
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-                  <span className="text-4xl md:text-5xl font-bold text-balck dark:text-emerald-400">
-                    {stat.value}
-                    <span className="text-sugarcane-green dark:text-emerald-300">{stat.suffix}</span>
-                  </span>
-                  <p className="font-handwritten font-bold text-xl md:text-text-xl text-sugarcane-green dark:text-emerald-600 mt-1 italic">
-                    {stat.label}
-                  </p>
+          <div className="mt-16 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start justify-items-center">
+            {t.stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="flex items-center justify-center mb-3">
+                  <Image
+                    className="w-12 h-12 md:w-16 md:h-16"
+                    src={stat.icon}
+                    alt={stat.suffix}
+                    width={100}
+                    height={100}
+                  />
                 </div>
-              ))}
-            </div>
-          </FadeIn>
+                <span className="text-4xl md:text-5xl font-bold text-balck dark:text-emerald-400">
+                  {stat.value}
+                  <span className="text-sugarcane-green dark:text-emerald-300">{stat.suffix}</span>
+                </span>
+                <p className="font-handwritten font-bold text-xl md:text-text-xl text-sugarcane-green dark:text-emerald-600 mt-1 italic">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import FadeIn from "@/components/animations/fade-in"
 import Image from "next/image"
@@ -84,7 +84,7 @@ const content = {
   },
 }
 
-export default function PartnersPageWhy({ locale = "en" }: WhyProps) {
+export default function Testimonials({ locale = "en" }: WhyProps) {
   const t = content[locale]
   const [currentIndex, setCurrentIndex] = useState(1)
 
@@ -95,6 +95,15 @@ export default function PartnersPageWhy({ locale = "en" }: WhyProps) {
   const goToNext = () => {
     setCurrentIndex((prev) => (prev === t.testimonials.length - 1 ? 0 : prev + 1))
   }
+
+  // Auto-advance carousel every 8 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev === t.testimonials.length - 1 ? 0 : prev + 1))
+    }, 8000)
+
+    return () => clearInterval(interval)
+  }, [t.testimonials.length])
 
   return (
     <section className="py-16 md:py-24 bg-white dark:bg-gray-900 transition-colors duration-300">
@@ -133,18 +142,18 @@ export default function PartnersPageWhy({ locale = "en" }: WhyProps) {
 
           {/* Testimonials Carousel */}
           <div className="relative">
-            <div className="flex items-center justify-center gap-4 md:gap-8">
+            <div className="flex items-center justify-center gap-4 md:gap-6">
               {/* Previous Button */}
               <button
                 onClick={goToPrevious}
-                className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors z-20"
                 aria-label="Previous testimonial"
               >
                 <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-gray-600 dark:text-gray-400" />
               </button>
 
               {/* Testimonial Cards */}
-              <div className="flex items-center justify-center gap-4 overflow-hidden">
+              <div className="flex items-center justify-center gap-4 md:gap-6 overflow-hidden">
                 {t.testimonials.map((testimonial, index) => {
                   const isActive = index === currentIndex
                   const isPrev = index === (currentIndex === 0 ? t.testimonials.length - 1 : currentIndex - 1)
@@ -156,17 +165,31 @@ export default function PartnersPageWhy({ locale = "en" }: WhyProps) {
                     <div
                       key={index}
                       className={`
-                        transition-all duration-500 ease-in-out
+                        transition-all duration-500 ease-in-out relative
                         ${isActive
-                          ? "opacity-100 scale-100 z-10"
-                          : "opacity-40 scale-90 hidden md:block"
+                          ? "z-10"
+                          : "hidden md:block"
                         }
+                        ${isPrev ? "order-first" : ""}
+                        ${isNext ? "order-last" : ""}
                       `}
                     >
                       <div className={`
-                        bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-lg border border-gray-200 dark:border-gray-700
-                        ${isActive ? "w-full max-w-md" : "w-48 md:w-64"}
+                        bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-lg border border-gray-200 dark:border-gray-700 relative overflow-hidden flex flex-col
+                        ${isActive ? "w-[320px] md:w-[480px] h-[280px] md:h-[320px]" : "w-64 md:w-80 h-[280px] md:h-[320px]"}
                       `}>
+                        {/* Gradient blur overlay for inactive cards */}
+                        {!isActive && (
+                          <div
+                            className={`absolute inset-0 z-10 pointer-events-none
+                              ${isPrev
+                                ? "bg-gradient-to-r from-white/90 via-white/50 to-transparent dark:from-gray-900/90 dark:via-gray-900/50"
+                                : "bg-gradient-to-l from-white/90 via-white/50 to-transparent dark:from-gray-900/90 dark:via-gray-900/50"
+                              }
+                            `}
+                          />
+                        )}
+
                         {/* Logo */}
                         <div className="flex justify-center mb-4">
                           <div className="w-12 h-12 relative">
@@ -181,20 +204,18 @@ export default function PartnersPageWhy({ locale = "en" }: WhyProps) {
 
                         {/* Quote */}
                         <blockquote className={`
-                          handwritten text-center text-black font-bold dark:text-gray-300 mb-4
-                          ${isActive ? "text-base md:text-lg" : "text-sm line-clamp-3"}
+                          handwritten text-center text-black font-bold dark:text-gray-300 flex-grow flex items-center justify-center
+                          ${isActive ? "text-base md:text-lg" : "text-sm"}
                         `}>
-                          "{testimonial.quote}"
+                          <span>"{testimonial.quote}"</span>
                         </blockquote>
 
                         {/* Author */}
-                        {isActive && (
-                          <div className="text-center">
-                            <p className="font-sans text-sm font-medium text-sugarcane-green dark:text-white">
-                              - {testimonial.author}, {testimonial.company}
-                            </p>
-                          </div>
-                        )}
+                        <div className={`text-center mt-4 ${!isActive ? "opacity-70" : ""}`}>
+                          <p className="font-sans text-sm font-medium text-sugarcane-green dark:text-white">
+                            - {testimonial.author}, {testimonial.company}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   )
@@ -204,7 +225,7 @@ export default function PartnersPageWhy({ locale = "en" }: WhyProps) {
               {/* Next Button */}
               <button
                 onClick={goToNext}
-                className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors z-20"
                 aria-label="Next testimonial"
               >
                 <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-gray-600 dark:text-gray-400" />

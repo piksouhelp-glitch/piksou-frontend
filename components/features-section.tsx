@@ -112,12 +112,12 @@ export default function FeaturesSection() {
         </StaggerContainer>
 
         <div className="mt-16 text-center">
-          <div className="rounded-2xl p-10 bg-white border-2 border-emerald-500 shadow-lg">
-            <h3 className="text-3xl md:text-4xl font-bold text-palm-shadow mb-4">
+          <div className="rounded-2xl p-10 bg-white dark:bg-gray-800 border-2 border-emerald-500 shadow-lg transition-colors duration-300">
+            <h3 className="text-3xl md:text-4xl font-bold text-palm-shadow dark:text-white mb-4">
               Ready to start saving?
-              <span className="block text-emerald-600 text-xl md:text-2xl mt-2 font-medium"> Ale nou koumans! </span>
+              <span className="block text-emerald-600 dark:text-emerald-400 text-xl md:text-2xl mt-2 font-medium"> Ale nou koumans! </span>
             </h3>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Join thousands of Mauritians who are already saving money with PiKSou. It's free, it's easy, and it's
               made right here in paradise!
             </p>

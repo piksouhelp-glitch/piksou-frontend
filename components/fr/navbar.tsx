@@ -5,6 +5,7 @@ import { Menu, X, Globe } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 import DarkModeToggle from "@/components/dark-mode-toggle";
 import InteractiveLink from "@/components/micro-interactions/interactive-link";
 import AnimatedIcon from "@/components/micro-interactions/animated-icon";
@@ -14,6 +15,7 @@ export default function NavbarFr() {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,9 +38,20 @@ export default function NavbarFr() {
     { href: "/fr#contact", label: "Contact" },
   ];
 
+  // Build language URLs based on current path
+  const getLanguageHref = (langCode: string) => {
+    // Remove /fr prefix from current path
+    const pathWithoutFr = pathname?.replace(/^\/fr/, "") || "/";
+    if (langCode === "en") {
+      return pathWithoutFr === "" ? "/" : pathWithoutFr;
+    }
+    // For French, keep current path
+    return pathname || "/fr";
+  };
+
   const languages = [
-    { code: "en", name: "English", href: "/" },
-    { code: "fr", name: "Français", href: "/fr" },
+    { code: "en", name: "English", href: getLanguageHref("en") },
+    { code: "fr", name: "Français", href: getLanguageHref("fr") },
   ];
 
   useEffect(() => {

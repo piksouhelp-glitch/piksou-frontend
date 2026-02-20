@@ -75,7 +75,7 @@ const contentFr = {
   ] as Pillar[],
 }
 
-export default function Pillars({ locale = "en" }: PillarsProps) {
+export default function WhatWeOffer({ locale = "en" }: PillarsProps) {
   const content = locale === "fr" ? contentFr : contentEn
 
   return (

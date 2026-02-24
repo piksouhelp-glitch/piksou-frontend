@@ -6,7 +6,6 @@ import TopDealsSectionFr from "@/components/fr/top-deals-section"
 import AboutSection from "@/components/fr/about-section"
 import MonetizationTransparency from "@/components/fr/monetization-transparency"
 import FeaturesSection from "@/components/fr/features-section"
-import PartnersSection from "@/components/fr/partners-section"
 import AppPreviewSection from "@/components/fr/app-preview-section"
 import HowItWorksSection from "@/components/fr/how-it-works-section"
 import FAQSection from "@/components/fr/faq-section"
@@ -110,7 +109,6 @@ export default function HomeFr() {
         <AboutSection />
         <FeaturesSection />
         <MonetizationTransparency />
-        <PartnersSection />
         <AppPreviewSection />
         <HowItWorksSection />
         <FAQSection />

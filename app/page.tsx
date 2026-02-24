@@ -6,7 +6,6 @@ import TopDealsSection from "@/components/top-deals-section"
 import AboutSection from "@/components/about-section"
 import MonetizationTransparency from "@/components/monetization-transparency"
 import FeaturesSection from "@/components/features-section"
-import PartnersSection from "@/components/partners-section"
 import AppPreviewSection from "@/components/app-preview-section"
 import HowItWorksSection from "@/components/how-it-works-section"
 import FAQSection from "@/components/faq-section"
@@ -109,7 +108,6 @@ export default function Home() {
         <TopDealsSection />
         <AboutSection />
         <FeaturesSection />
-        <PartnersSection />
         <MonetizationTransparency />
         <AppPreviewSection />
         <HowItWorksSection />

@@ -32,7 +32,6 @@ export default function NavbarFr() {
   const menuItems = [
     { href: "/fr#features", label: "Fonctionnalités" },
     { href: "/fr#how-it-works", label: "Comment ça marche" },
-    { href: "/fr/partners", label: "Partenaires" },
     { href: "/fr#faq", label: "FAQ" },
     { href: "/fr#download", label: "Télécharger" },
     { href: "/fr#contact", label: "Contact" },

@@ -32,7 +32,6 @@ export default function Navbar() {
   const menuItems = [
     { href: "/#features", label: "Features" },
     { href: "/#how-it-works", label: "How It Works" },
-    { href: "/partners", label: "Partners" },
     { href: "/#faq", label: "FAQ" },
     { href: "/#download", label: "Download" },
     { href: "/#contact", label: "Contact" },

@@ -5,6 +5,7 @@ import { Menu, X, Globe } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 import DarkModeToggle from "@/components/dark-mode-toggle";
 import InteractiveLink from "@/components/micro-interactions/interactive-link";
 import AnimatedIcon from "@/components/micro-interactions/animated-icon";
@@ -13,6 +14,20 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Trigger after just 50px of scroll for faster response
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial scroll position
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const menuItems = [
     { href: "/#features", label: "Features" },
@@ -22,9 +37,18 @@ export default function Navbar() {
     { href: "/#contact", label: "Contact" },
   ];
 
+  // Build language URLs based on current path
+  const getLanguageHref = (langCode: string) => {
+    if (langCode === "en") {
+      return pathname || "/";
+    }
+    // For French, add /fr prefix to current path
+    return `/fr${pathname === "/" ? "" : pathname}`;
+  };
+
   const languages = [
-    { code: "en", name: "English", href: "/" },
-    { code: "fr", name: "Français", href: "/fr" },
+    { code: "en", name: "English", href: getLanguageHref("en") },
+    { code: "fr", name: "Français", href: getLanguageHref("fr") },
   ];
 
   useEffect(() => {
@@ -37,7 +61,11 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm sticky top-0 z-50 shadow-sm transition-colors duration-300"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-50
+         ${isScrolled
+          ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-sm"
+          : "bg-transparent"
+      }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}

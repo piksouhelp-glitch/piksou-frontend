@@ -88,6 +88,10 @@ const config: Config = {
         "tropical-spin": {
           to: { transform: "rotate(360deg)" },
         },
+        scrollLeft: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -95,10 +99,11 @@ const config: Config = {
         float: "float 3s ease-in-out infinite",
         "mascot-float": "mascot-float 4s ease-in-out infinite",
         "tropical-spin": "tropical-spin 1s ease-in-out infinite",
+        scrollLeft: "scrollLeft 25s linear infinite",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};
 
 export default config

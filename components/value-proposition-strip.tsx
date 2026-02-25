@@ -43,7 +43,7 @@ export default function ValuePropositionStrip() {
                             </motion.span>
                         </motion.div>
                         <motion.h3
-                            className="text-lg font-bold text-palm-shadow dark:text-sugarcane-green"
+                            className="text-xl font-bold text-palm-shadow dark:text-sugarcane-green"
                             whileHover={{
                                 color: "#F59E0B",
                                 transition: { duration: 0.2 }
@@ -52,7 +52,7 @@ export default function ValuePropositionStrip() {
                             Save Money
                         </motion.h3>
                         <motion.p
-                            className="text-sm text-gray-600 dark:text-gray-300 max-w-xs"
+                            className="text-base text-gray-600 dark:text-gray-300 max-w-xs"
                             whileHover={{
                                 color: "#374151",
                                 transition: { duration: 0.2 }
@@ -92,7 +92,7 @@ export default function ValuePropositionStrip() {
                             </motion.span>
                         </motion.div>
                         <motion.h3
-                            className="text-lg font-bold text-palm-shadow dark:text-sugarcane-green"
+                            className="text-xl font-bold text-palm-shadow dark:text-sugarcane-green"
                             whileHover={{
                                 color: "#3B82F6",
                                 transition: { duration: 0.2 }
@@ -101,7 +101,7 @@ export default function ValuePropositionStrip() {
                             Find Deals Fast
                         </motion.h3>
                         <motion.p
-                            className="text-sm text-gray-600 dark:text-gray-300 max-w-xs"
+                            className="text-base text-gray-600 dark:text-gray-300 max-w-xs"
                             whileHover={{
                                 color: "#374151",
                                 transition: { duration: 0.2 }
@@ -141,7 +141,7 @@ export default function ValuePropositionStrip() {
                             </motion.span>
                         </motion.div>
                         <motion.h3
-                            className="text-lg font-bold text-palm-shadow dark:text-sugarcane-green"
+                            className="text-xl font-bold text-palm-shadow dark:text-sugarcane-green"
                             whileHover={{
                                 color: "#10B981",
                                 transition: { duration: 0.2 }
@@ -150,7 +150,7 @@ export default function ValuePropositionStrip() {
                             Track Your Savings
                         </motion.h3>
                         <motion.p
-                            className="text-sm text-gray-600 dark:text-gray-300 max-w-xs"
+                            className="text-base text-gray-600 dark:text-gray-300 max-w-xs"
                             whileHover={{
                                 color: "#374151",
                                 transition: { duration: 0.2 }

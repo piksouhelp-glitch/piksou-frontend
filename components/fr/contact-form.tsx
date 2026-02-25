@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import type { Variants } from "framer-motion"
 import { Send, CheckCircle, AlertCircle, User, Mail, MessageSquare, Phone } from "lucide-react"
 import RippleButton from "@/components/micro-interactions/ripple-button"
 import AnimatedIcon from "@/components/micro-interactions/animated-icon"
@@ -184,7 +185,7 @@ export default function ContactForm() {
     }
   }
 
-  const inputVariants = {
+  const inputVariants: Variants = {
     focused: {
       scale: 1.02,
       transition: { type: "spring", stiffness: 300, damping: 10 },
@@ -195,15 +196,16 @@ export default function ContactForm() {
     },
   }
 
-  const errorVariants = {
-    hidden: { opacity: 0, y: -10, height: 0 },
+  const errorVariants: Variants = {
+    hidden: { opacity: 0, y: -10, scaleY: 0 },
     visible: {
       opacity: 1,
       y: 0,
-      height: "auto",
+      scaleY: 1,
       transition: { type: "spring", stiffness: 300, damping: 20 },
     },
   }
+  const errorMotionStyle = { transformOrigin: "top" as const }
 
   if (isSubmitted) {
     return (
@@ -280,6 +282,7 @@ export default function ContactForm() {
                   initial="hidden"
                   animate="visible"
                   exit="hidden"
+                  style={errorMotionStyle}
                   className="flex items-center space-x-1 text-red-500 text-sm"
                 >
                   <AlertCircle size={16} />
@@ -331,6 +334,7 @@ export default function ContactForm() {
                   initial="hidden"
                   animate="visible"
                   exit="hidden"
+                  style={errorMotionStyle}
                   className="flex items-center space-x-1 text-red-500 text-sm"
                 >
                   <AlertCircle size={16} />
@@ -382,6 +386,7 @@ export default function ContactForm() {
                   initial="hidden"
                   animate="visible"
                   exit="hidden"
+                  style={errorMotionStyle}
                   className="flex items-center space-x-1 text-red-500 text-sm"
                 >
                   <AlertCircle size={16} />
@@ -430,6 +435,7 @@ export default function ContactForm() {
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
+                style={errorMotionStyle}
                 className="flex items-center space-x-1 text-red-500 text-sm"
               >
                 <AlertCircle size={16} />
@@ -480,6 +486,7 @@ export default function ContactForm() {
               initial="hidden"
               animate="visible"
               exit="hidden"
+              style={errorMotionStyle}
               className="flex items-center space-x-1 text-red-500 text-sm"
             >
               <AlertCircle size={16} />
@@ -526,9 +533,10 @@ export default function ContactForm() {
       <AnimatePresence>
         {submitError && (
           <motion.div
-            initial={{ opacity: 0, y: -10, height: 0 }}
-            animate={{ opacity: 1, y: 0, height: "auto" }}
-            exit={{ opacity: 0, y: -10, height: 0 }}
+            initial={{ opacity: 0, y: -10, scaleY: 0 }}
+            animate={{ opacity: 1, y: 0, scaleY: 1 }}
+            exit={{ opacity: 0, y: -10, scaleY: 0 }}
+            style={errorMotionStyle}
             className="mt-4 flex items-center space-x-2 text-red-500 text-sm bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3"
           >
             <AlertCircle size={16} />

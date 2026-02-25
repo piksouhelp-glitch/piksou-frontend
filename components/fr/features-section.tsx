@@ -112,19 +112,18 @@ export default function FeaturesSectionFr() {
           ))}
         </StaggerContainer>
 
-        <FadeIn delay={0.8}>
-          <div className="mt-16 text-center">
-            <div className="organic-card p-8 bg-gradient-to-r from-sugarcane-green/10 to-ocean-blue/10">
-              <h3 className="text-3xl handwritten text-palm-shadow dark:text-sugarcane-green mb-4">
-                Prêt à commencer à économiser ?<span className="creole-text"> Ale nou koumans! </span>
-              </h3>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
-                Rejoignez des milliers de Mauriciens qui économisent déjà avec PikSou. C'est gratuit, c'est facile, et
-                c'est fait ici même au paradis ! 🏝️
-              </p>
-            </div>
+        <div className="mt-16 text-center">
+          <div className="rounded-2xl p-10 bg-white dark:bg-gray-800 border-2 border-emerald-500 shadow-lg transition-colors duration-300">
+            <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Prêt à commencer à économiser ?
+              <span className="block text-emerald-600 dark:text-emerald-400 text-xl md:text-2xl mt-2 font-medium"> Ale nou koumans! </span>
+            </h3>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Rejoignez des milliers de Mauriciens qui économisent déjà avec PiKSou. C'est gratuit, c'est facile, et
+              c'est fait ici même au paradis !
+            </p>
           </div>
-        </FadeIn>
+        </div>
       </div>
     </section>
   )

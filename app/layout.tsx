@@ -1,12 +1,14 @@
-import type React from "react"
-import type { Metadata } from "next"
-import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
+import type React from "react";
+import type { Metadata } from "next";
+import Script from "next/script";
+import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://piksou.mu"),
   title: {
-    default: "PiKSou - Compare Grocery Deals in Mauritius | Save Money on Shopping",
+    default:
+      "PiKSou - Compare Grocery Deals in Mauritius | Save Money on Shopping",
     template: "%s | PiKSou - Grocery Deals Mauritius",
   },
   description:
@@ -47,34 +49,38 @@ export const metadata: Metadata = {
     telephone: false,
   },
   manifest: "/manifest.json",
-  generator: 'v0.dev'
-}
+  generator: "v0.dev",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google Tag Manager - as high in head as possible per GTM instructions */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        <Script id="gtm" strategy="afterInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-M9LTXB8K');`,
-          }}
-        />
+})(window,document,'script','dataLayer','GTM-M9LTXB8K');`}
+        </Script>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap"
           rel="stylesheet"
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=5"
+        />
         <meta name="theme-color" content="#48C774" />
         <meta name="msapplication-TileColor" content="#48C774" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -85,9 +91,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <link rel="alternate" hrefLang="en" href="https://piksou.mu" />
         <link rel="alternate" hrefLang="fr" href="https://piksou.mu/fr" />
         <link rel="alternate" hrefLang="x-default" href="https://piksou.mu" />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta
+          name="robots"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+        <meta
+          name="googlebot"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+        <meta
+          name="bingbot"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
         <meta property="og:locale" content="en_US" />
         <meta property="og:locale:alternate" content="fr_MU" />
         <meta property="og:site_name" content="PiKSou" />
@@ -96,10 +111,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <meta name="geo.region" content="MU" />
         <meta name="geo.placename" content="Mauritius" />
         <meta name="ICBM" content="-20.348404, 57.552152" />
-        <meta name="DC.title" content="PiKSou - Compare Grocery Deals in Mauritius" />
+        <meta
+          name="DC.title"
+          content="PiKSou - Compare Grocery Deals in Mauritius"
+        />
         <meta name="DC.creator" content="PiKSou Team" />
-        <meta name="DC.subject" content="Grocery price comparison, Mauritius shopping deals" />
-        <meta name="DC.description" content="Compare grocery deals across all major supermarkets in Mauritius" />
+        <meta
+          name="DC.subject"
+          content="Grocery price comparison, Mauritius shopping deals"
+        />
+        <meta
+          name="DC.description"
+          content="Compare grocery deals across all major supermarkets in Mauritius"
+        />
         <meta name="DC.publisher" content="PiKSou" />
         <meta name="DC.contributor" content="PiKSou Team" />
         <meta name="DC.date" content="2024-01-01" />
@@ -111,7 +135,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <meta name="DC.rights" content="© 2024 PiKSou. All rights reserved." />
       </head>
       <body suppressHydrationWarning>
-        {/* Google Tag Manager (noscript) - immediately after opening body per GTM instructions */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-M9LTXB8K"
@@ -120,10 +143,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange={false}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange={false}
+        >
           {children}
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

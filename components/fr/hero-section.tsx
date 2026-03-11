@@ -68,7 +68,7 @@ export default function HeroSectionFr() {
 
               <div className="flex items-center space-x-4 text-palm-shadow dark:text-gray-300">
                 <p className="text-lg">
-                  <span className="font-bold handwritten text-palm-shadow text-2xl">1000+</span> Mauriciens économisent déjà !
+                  <span className="font-bold handwritten text-palm-shadow text-2xl">10,000+</span> Mauriciens économisent déjà !
                   <span className="creole-text"> Zot kontan! </span>
                 </p>
               </div>

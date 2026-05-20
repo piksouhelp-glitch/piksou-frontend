@@ -1,259 +1,194 @@
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://api.piksou.com"
-
-// TypeScript interfaces based on the API response structure
 export interface Category {
-    id: string
-    name: string
-    name_fr: string
-    description: string
-    description_fr: string
-    icon: string | null
-    image: string
-    is_active: boolean
-    active_deal_count: number
-    created_at: string
-    updated_at: string
+  id: string
+  name: string
+  name_fr: string
+  description: string
+  description_fr: string
+  icon: string | null
+  image: string
+  is_active: boolean
+  active_deal_count: number
+  created_at: string
+  updated_at: string
 }
 
 export interface Product {
-    id: string
-    name: string
-    name_fr: string
-    productname: string
-    productname_fr: string
-    description: string
-    description_fr: string
-    image: string
-    category: Category
-    category_display: string
-    brand: string
-    weight: string | null
-    unit: string | null
-    nutritional_info: string | null
-    ingredients: string | null
-    allergens: string | null
-    storage_instructions: string | null
-    country_of_origin: string | null
-    created_at: string
-    updated_at: string
+  id: string
+  name: string
+  name_fr: string
+  productname: string
+  productname_fr: string
+  description: string
+  description_fr: string
+  image: string
+  category: Category
+  category_display: string
+  brand: string
+  weight: string | null
+  unit: string | null
+  nutritional_info: string | null
+  ingredients: string | null
+  allergens: string | null
+  storage_instructions: string | null
+  country_of_origin: string | null
+  created_at: string
+  updated_at: string
 }
 
 export interface Store {
-    id: string
-    name: string
-    description: string
-    logo: string
-    website: string
-    contact_email: string
-    contact_phone: string
-    business_hours: string | null
-    is_active: boolean
-    locations: any[]
-    locations_count: number
-    active_deal_count: number
-    created_at: string
-    updated_at: string
+  id: string
+  name: string
+  description: string
+  logo: string
+  website: string
+  contact_email: string
+  contact_phone: string
+  business_hours: string | null
+  is_active: boolean
+  locations: unknown[]
+  locations_count: number
+  active_deal_count: number
+  created_at: string
+  updated_at: string
 }
 
 export interface Brochure {
-    id: string
-    title: string
-    description: string
-    store: Store
-    image: string | null
-    start_date: string
-    end_date: string
-    is_active: boolean
-    active_deals_count: number
-    page_count: number
-    created_at: string
-    updated_at: string
+  id: string
+  title: string
+  description: string
+  store: Store
+  image: string | null
+  start_date: string
+  end_date: string
+  is_active: boolean
+  active_deals_count: number
+  page_count: number
+  created_at: string
+  updated_at: string
 }
 
 export interface Deal {
-    id: string
-    product: Product
-    store: Store
-    location: any | null
-    brochure: Brochure
-    original_price: string
-    discounted_price: string
-    discount_percentage: string
-    deal_type: string
-    quantity_required: number
-    deal_conditions: {
-        notes: string | null
-    }
-    start_date: string
-    end_date: string
-    status: string
-    created_at: string
-    updated_at: string
-    is_saved: boolean
-    is_purchased: boolean
+  id: string
+  image?: string
+  product: Product
+  store: Store
+  location: unknown | null
+  brochure: Brochure
+  original_price: string
+  discounted_price: string
+  discount_percentage: string
+  deal_type: string
+  quantity_required: number
+  deal_conditions: {
+    notes: string | null
+  }
+  start_date: string
+  end_date: string
+  status: string
+  created_at: string
+  updated_at: string
+  is_saved: boolean
+  is_purchased: boolean
+}
+
+export interface PaginatedResponse<T> {
+  count: number
+  next: string | null
+  previous: string | null
+  results: T[]
 }
 
 export interface HomePublicResponse {
-    categories: Category[]
-    latest_deals: Deal[]
-    top_deals: Deal[]
-    stores: Store[]
+  categories: Category[]
+  latest_deals: Deal[]
+  top_deals: Deal[] | PaginatedResponse<Deal>
+  stores: Store[]
+}
+
+function extractDeals(value: Deal[] | PaginatedResponse<Deal>): Deal[] {
+  return Array.isArray(value) ? value : value?.results ?? []
 }
 
 export interface ApiResponse<T> {
-    data?: T
-    error?: string
-    success: boolean
+  data?: T
+  error?: string
+  success: boolean
 }
 
+type SupportMessagePayload = Record<string, string>
+
 class ApiService {
-    private async request<T>(
-        endpoint: string,
-        options: RequestInit = {}
-    ): Promise<ApiResponse<T>> {
-        try {
-            // Ensure proper URL construction with slash between BASE_URL and endpoint
-            const baseUrl = BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL
-            const endpointPath = endpoint.startsWith('/') ? endpoint : `/${endpoint}`
-            const url = `${baseUrl}${endpointPath}`
+  private async fetchRoute<T>(
+    path: string,
+    options: RequestInit = {}
+  ): Promise<ApiResponse<T>> {
+    try {
+      const response = await fetch(path, {
+        ...options,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          ...options.headers,
+        },
+      })
 
-            const response = await fetch(url, {
-                ...options,
-                method: options.method || "GET",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json",
-                    ...options.headers,
-                },
-            })
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}))
+        const message =
+          (errorData as { error?: string; detail?: string }).error ||
+          (errorData as { error?: string; detail?: string }).detail ||
+          `HTTP error! status: ${response.status}`
+        throw new Error(message)
+      }
 
-            if (!response.ok) {
-                let errorMessage = `HTTP error! status: ${response.status}`
-                try {
-                    const errorData = await response.json()
-                    errorMessage = errorData.detail || errorData.message || errorMessage
-                } catch (parseError) {
-                    console.warn("Could not parse error response as JSON")
-                }
-                throw new Error(errorMessage)
-            }
-
-            const data = await response.json()
-            return { data, success: true }
-        } catch (error: any) {
-            console.error("API request failed:", {
-                message: error.message,
-                name: error.name,
-                stack: error.stack,
-                endpoint: `${BASE_URL}${endpoint}`
-            })
-
-            // Provide more specific error messages
-            let userMessage = error.message
-            if (error.message === "Failed to fetch") {
-                userMessage = "Unable to connect to the server. Please check your internet connection and try again."
-            } else if (error.message.includes("CORS")) {
-                userMessage = "Server configuration issue. Please try again later."
-            }
-
-            return { error: userMessage, success: false }
-        }
+      const data = (await response.json()) as T
+      return { data, success: true }
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Request failed"
+      console.error(`API request failed (${path}):`, message)
+      return { error: message, success: false }
     }
+  }
 
-    // Support messages (existing functionality)
-    async sendSupportMessage(payload: any, token?: string) {
-        // Use Next.js API route to avoid CORS issues
-        try {
-            const response = await fetch('/api/support/messages', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    ...(token ? { Authorization: `Bearer ${token}` } : {}),
-                },
-                body: JSON.stringify(payload),
-            })
+  async sendSupportMessage(
+    payload: SupportMessagePayload,
+    token?: string
+  ): Promise<ApiResponse<unknown>> {
+    return this.fetchRoute("/api/support/messages", {
+      method: "POST",
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+      body: JSON.stringify(payload),
+    })
+  }
 
-            if (!response.ok) {
-                const errorData = await response.json().catch(() => ({}))
-                throw new Error(errorData.error || errorData.detail || `HTTP error! status: ${response.status}`)
-            }
+  async getHomePublicData(): Promise<ApiResponse<HomePublicResponse>> {
+    return this.fetchRoute<HomePublicResponse>("/api/products/home")
+  }
 
-            const data = await response.json()
-            return { data, success: true }
-        } catch (error: any) {
-            console.error('Support message submission failed:', error.message || error)
-            return {
-                error: error.message || 'Failed to submit support message. Please try again later.',
-                success: false
-            }
-        }
+  async getTopDeals(): Promise<ApiResponse<Deal[]>> {
+    const result = await this.getHomePublicData()
+    if (result.success && result.data) {
+      return { data: extractDeals(result.data.top_deals), success: true }
     }
+    return { error: result.error, success: false }
+  }
 
-    // New endpoints for deals
-    async getHomePublicData(): Promise<ApiResponse<HomePublicResponse>> {
-        // Try our Next.js API route first (more reliable)
-        try {
-            const controller = new AbortController()
-            const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
-
-            const response = await fetch('/api/deals', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                signal: controller.signal,
-            })
-
-            clearTimeout(timeoutId)
-
-            if (!response.ok) {
-                throw new Error(`Local API error: ${response.status} ${response.statusText}`)
-            }
-
-            const data = await response.json()
-            return { data, success: true }
-        } catch (error) {
-            console.warn("Local API failed, trying direct API:", error)
-        }
-
-        // Fallback to direct API
-        try {
-            const directResult = await this.request<HomePublicResponse>("api/products/home-public/")
-            if (directResult.success) {
-                return directResult
-            }
-        } catch (error: any) {
-            console.error("Both local and direct API failed:", error)
-            return { error: "Unable to fetch deals. Please try again later.", success: false }
-        }
-
-        return { error: "Unable to fetch deals. Please try again later.", success: false }
+  async getCategories(): Promise<ApiResponse<Category[]>> {
+    const result = await this.getHomePublicData()
+    if (result.success && result.data) {
+      return { data: result.data.categories, success: true }
     }
+    return { error: result.error, success: false }
+  }
 
-    async getTopDeals(): Promise<ApiResponse<Deal[]>> {
-        const result = await this.getHomePublicData()
-        if (result.success && result.data) {
-            return { data: result.data.top_deals, success: true }
-        }
-        return { error: result.error, success: false }
+  async getStores(): Promise<ApiResponse<Store[]>> {
+    const result = await this.getHomePublicData()
+    if (result.success && result.data) {
+      return { data: result.data.stores, success: true }
     }
-
-    async getCategories(): Promise<ApiResponse<Category[]>> {
-        const result = await this.getHomePublicData()
-        if (result.success && result.data) {
-            return { data: result.data.categories, success: true }
-        }
-        return { error: result.error, success: false }
-    }
-
-    async getStores(): Promise<ApiResponse<Store[]>> {
-        const result = await this.getHomePublicData()
-        if (result.success && result.data) {
-            return { data: result.data.stores, success: true }
-        }
-        return { error: result.error, success: false }
-    }
+    return { error: result.error, success: false }
+  }
 }
 
 export const apiService = new ApiService()
